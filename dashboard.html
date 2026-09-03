@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Our Little Archive</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-dashboard"
+    style="--dashboard-background: url('assets/backgrounds/dashboard-bg.jpg');"
+>
+
+<header class="app-header">
+  <nav class="main-nav"><a class="nav-link active" href="dashboard.html">DASHBOARD</a>
+<a class="nav-link " href="photos.html">PHOTOS</a>
+<a class="nav-link " href="videos.html">VIDEOS</a>
+<a class="nav-link " href="journal.html">JOURNAL</a>
+<a class="nav-link " href="documents.html">DOCUMENTS</a></nav>
+
+<div class="user-menu">
+
+    <div class="user-profile">
+
+        <div class="avatar">
+            <img
+                src="assets/avatar-placeholder.svg"
+                alt="Profile"
+            >
+        </div>
+
+        <div class="user-info">
+
+            <span class="user-greeting">
+                Hi, <span data-user-name>Name</span>
+            </span>
+
+            <button
+                class="logout-link"
+                type="button"
+                onclick="signOut()"
+            >
+                LOG OUT
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</header>
+
+
+<main class="page-wrap">
+  <section class="greeting">
+
+    <h1>
+        Good day, <span data-user-name>Name</span>
+        <span class="heart">♡</span>
+    </h1>
+
+    <p>
+        Welcome back to our little corner
+    </p>
+
+  </section>
+
+  <section class="category-grid">
+    <a class="category-card pink-card" href="photos.html">
+      <div class="category-icon"><svg class="" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="18" width="48" height="36" rx="5"/><path d="M20 18l5-8h14l5 8"/><circle cx="32" cy="36" r="10"/><circle cx="49" cy="25" r="2"/></svg></div>
+      <h2>PHOTOS</h2><p>Our memories</p>
+    </a>
+    <a class="category-card green-card" href="videos.html">
+      <div class="category-icon"><svg class="" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="17" width="34" height="30" rx="4"/><path d="M42 27l14-8v26l-14-8"/><path d="M24 26l10 6-10 6z"/></svg></div>
+      <h2>VIDEOS</h2><p>Our memories</p>
+    </a>
+    <a class="category-card pink-card" href="journal.html">
+      <div class="category-icon"><svg class="" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 12c9-3 17 0 22 5v36c-5-5-13-8-22-5z"/><path d="M54 12c-9-3-17 0-22 5v36c5-5 13-8 22-5z"/><path d="M32 17v36"/></svg></div>
+      <h2>JOURNAL</h2><p>Our memories</p>
+    </a>
+    <a class="category-card green-card" href="documents.html">
+      <div class="category-icon"><svg class="" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 6h23l10 10v42H17z"/><path d="M40 6v12h10"/><path d="M25 30h17M25 38h17M25 46h12"/></svg></div>
+      <h2>DOCUMENT</h2><p>Our memories</p>
+    </a>
+  </section>
+
+  <div class="center-action">
+    <a class="primary-btn button" href="add-memory.html">+ ADD A MEMORY</a>
+  </div>
+</main>
+
+<div id="toast" class="toast" role="status"></div>
+<script src="js/app.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/auth.js"></script>
+<script>
+    protectPage();
+</script>
+
+</body>
+</html>

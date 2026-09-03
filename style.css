@@ -1,0 +1,3640 @@
+/* =========================================================
+   OUR LITTLE ARCHIVE
+   INDEX / HOME PAGE
+   ========================================================= */
+
+@font-face {
+    font-family: "Alice";
+    src: url("../assets/fonts/Alice-Regular.ttf") format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Britany";
+    src: url("../assets/fonts/Britany.ttf") format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Garet";
+    src: url("../assets/fonts/Garet-Regular.ttf") format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Moontime";
+    src: url("../assets/fonts/Moontime.ttf") format("truetype");
+    font-display: swap;
+}
+
+:root {
+    --pink: #e47a9f;
+    --pink-bright: #ff70a2;
+    --pink-light: #f6bfd2;
+    --pink-soft: #f8bed2;
+    --pink-dusty: #d38ca1;
+    --pink-pale: #ffd9e2;
+
+    --matcha: #616144;
+
+    --gray: #737373;
+    --brown: #3c3333;
+    --dark: #232320;
+    --white: #ffffff;
+
+    --font-display: "Alice", Georgia, serif;
+    --font-script: "Moontime", "Brush Script MT", cursive;
+    --font-garet: "Garet", Arial, sans-serif;
+}
+
+/* ---------- Basic reset ---------- */
+
+* {
+    box-sizing: border-box;
+}
+
+/* Remove browser's default underline from website links */
+a {
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    text-decoration: none;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+}
+
+/* =========================================================
+   HOME BACKGROUND
+
+   The actual image is supplied from INDEX.HTML through:
+
+   style="--home-background: url('assets/backgrounds/home-bg.png')"
+
+   This is intentional. It means the background path is
+   controlled directly by the HTML page and isn't dependent
+   on the CSS file's folder location.
+   ========================================================= */
+
+body.page-home {
+    background-color: #f8dce5;
+
+    background-image: var(--home-background);
+
+    background-repeat: no-repeat;
+
+    /*
+       "cover" makes the artwork fill the entire browser.
+       It may crop a tiny amount on unusual screen ratios,
+       but it will never leave blank areas.
+    */
+    background-size: cover;
+
+    background-position: center center;
+
+    background-attachment: fixed;
+}
+
+/* ---------- Home layout ---------- */
+
+.home {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 25px;
+}
+
+.home-content {
+    width: min(900px, 92vw);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+/* ---------- Main logo ---------- */
+
+.home-logo {
+    width: 90px;
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 25px;
+}
+
+.home-logo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+/* ---------- Main title ---------- */
+
+.home-title {
+    margin: 0;
+
+    font-family: var(--font-display);
+    font-size: clamp(48px, 7vw, 90px);
+    font-weight: 700;
+
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+
+    color: var(--pink);
+
+    text-transform: uppercase;
+}
+
+.home-title span {
+    display: block;
+    color: var(--matcha);
+}
+
+/* ---------- Tagline ---------- */
+
+.home-tagline {
+    margin: 28px 0 35px;
+
+    font-family: var(--font-script);
+    font-size: clamp(23px, 3vw, 34px);
+
+    color: var(--gray);
+}
+
+/* ---------- Enter button ---------- */
+
+.primary-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 55px;
+    padding: 0 38px;
+
+    border: none;
+    border-radius: 999px;
+
+    background: var(--pink);
+    color: var(--white);
+
+    font-family: var(--font-garet);
+    font-size: 17px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    box-shadow: 0 10px 25px rgba(60, 51, 51, 0.15);
+
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        background 180ms ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+
+    background: var(--pink-bright);
+
+    box-shadow: 0 14px 28px rgba(60, 51, 51, 0.20);
+}
+
+.primary-btn:active {
+    transform: translateY(-1px);
+}
+
+/* ---------- Footer strawberry/logo ---------- */
+
+.home-footer-mark {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 38px;
+
+    color: var(--gray);
+
+    font-family: var(--font-script);
+    font-size: clamp(18px, 2vw, 24px);
+}
+
+.home-footer-mark img {
+    width: 34px;
+    height: 34px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+}
+
+.home-footer-mark .heart {
+    color: var(--pink);
+    font-family: Arial, sans-serif;
+    font-size: 22px;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    body.page-home {
+        /*
+           Fixed backgrounds can behave awkwardly on some
+           mobile browsers, so allow the image to scroll with
+           the page on smaller screens.
+        */
+        background-attachment: scroll;
+    }
+
+    .home {
+        min-height: 100svh;
+        padding: 30px 20px;
+    }
+
+    .home-logo {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 20px;
+    }
+
+    .home-title {
+        font-size: clamp(40px, 12vw, 64px);
+    }
+
+    .home-tagline {
+        margin: 22px 0 28px;
+        font-size: clamp(20px, 6vw, 28px);
+    }
+
+    .primary-btn {
+        min-height: 50px;
+        padding: 0 28px;
+        font-size: 15px;
+    }
+
+    .home-footer-mark {
+        margin-top: 30px;
+        font-size: 18px;
+    }
+
+    .home-footer-mark img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .home {
+        padding: 25px 16px;
+    }
+
+    .home-logo {
+        width: 62px;
+        height: 62px;
+    }
+
+    .home-title {
+        font-size: 39px;
+    }
+
+    .home-tagline {
+        font-size: 19px;
+    }
+
+    .primary-btn {
+        min-height: 48px;
+        padding: 0 23px;
+        font-size: 14px;
+    }
+
+    .home-footer-mark {
+        font-size: 16px;
+    }
+}
+
+
+body.page-login {
+    background-color: #f8dce5;
+
+    background-image: var(--login-background);
+
+    background-repeat: no-repeat;
+
+    /*
+       "cover" makes the artwork fill the entire browser.
+       It may crop a tiny amount on unusual screen ratios,
+       but it will never leave blank areas.
+    */
+    background-size: cover;
+
+    background-position: center center;
+
+    background-attachment: fixed;
+}
+
+body.page-dashboard {
+    background-color: #f8dce5;
+
+    background-image: var(--dashboard-background);
+
+    background-repeat: no-repeat;
+
+    /*
+       "cover" makes the artwork fill the entire browser.
+       It may crop a tiny amount on unusual screen ratios,
+       but it will never leave blank areas.
+    */
+    background-size: cover;
+
+    background-position: center center;
+
+    background-attachment: fixed;
+}
+
+body.page-photos {
+    background-color: #f8dce5;
+
+    background-image: var(--photos-background);
+
+    background-repeat: no-repeat;
+
+    /*
+       "cover" makes the artwork fill the entire browser.
+       It may crop a tiny amount on unusual screen ratios,
+       but it will never leave blank areas.
+    */
+    background-size: cover;
+
+    background-position: center center;
+
+    background-attachment: fixed;
+}
+
+body.page-videos {
+    background-color: #f8dce5;
+
+    background-image: var(--videos-background);
+
+    background-repeat: no-repeat;
+
+    /*
+       "cover" makes the artwork fill the entire browser.
+       It may crop a tiny amount on unusual screen ratios,
+       but it will never leave blank areas.
+    */
+    background-size: cover;
+
+    background-position: center center;
+
+    background-attachment: fixed;
+}
+
+body.page-journal {
+    background-color: #f8dce5;
+
+    background-image: var(--journal-background);
+
+    background-repeat: no-repeat;
+
+    /*
+       "cover" makes the artwork fill the entire browser.
+       It may crop a tiny amount on unusual screen ratios,
+       but it will never leave blank areas.
+    */
+    background-size: cover;
+
+    background-position: center center;
+
+    background-attachment: fixed;
+}
+
+body.page-documents {
+    background-color: #f8dce5;
+
+    background-image: var(--documents-background);
+
+    background-repeat: no-repeat;
+
+    /*
+       "cover" makes the artwork fill the entire browser.
+       It may crop a tiny amount on unusual screen ratios,
+       but it will never leave blank areas.
+    */
+    background-size: cover;
+
+    background-position: center center;
+
+    background-attachment: fixed;
+}
+
+body.page-add {
+    background-color: #f8dce5;
+
+    background-image: var(--add-background);
+
+    background-repeat: no-repeat;
+
+    /*
+       "cover" makes the artwork fill the entire browser.
+       It may crop a tiny amount on unusual screen ratios,
+       but it will never leave blank areas.
+    */
+    background-size: cover;
+
+    background-position: center center;
+
+    background-attachment: fixed;
+}
+
+.center-page{min-height:100vh;display:grid;place-items:center;padding:30px}
+.login-card{width:min(390px,92vw);padding:42px 44px 48px;border-radius:18px;background:var(--pink);box-shadow:var(--shadow);color:#fff}
+.login-title{margin:0;text-align:center;font-family:var(--font-display);font-size:28px}
+.login-subtitle{margin:4px 0 30px;text-align:center;font-family:var(--font-script);font-size:22px}
+.form-group{margin-bottom:20px}.form-group label{display:block;margin-bottom:7px;font-size:14px}
+.form-control{width:100%;min-height:47px;padding:10px 15px;border:0;border-radius:14px;outline:0;background:#fff;color:var(--brown)}
+.form-control:focus{box-shadow:0 0 0 3px rgba(255,255,255,.35)}
+.login-card .primary-btn{display:block;margin:30px auto 0;background:var(--pink-pale);color:var(--pink)}
+
+.app-header{height:90px;background:rgba(255,255,255,.96);display:flex;align-items:center;padding:0 5vw;gap:28px;box-shadow:0 2px 12px rgba(60,51,51,.06);position:sticky;top:0;z-index:20}
+.main-nav{display:flex;align-items:center;gap:clamp(18px,3vw,42px);flex:1}
+
+.nav-link {
+    font-family: var(--font-garet);
+    color: var(--matcha);
+    font-size: 18px;
+    letter-spacing: .03em;
+    padding: 10px 0;
+    position: relative;
+    text-decoration: none;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    text-decoration: none;
+}
+
+.nav-link.active{color:var(--pink)}.nav-link.active:after{content:"";position:absolute;left:0;right:0;bottom:2px;height:2px;background:var(--pink)}
+
+/* =========================================================
+   USER PROFILE / LOGOUT
+   ========================================================= */
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    font-family: var(--font-garet);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+}
+
+.user-greeting {
+    font-family: var(--font-garet);
+    font-size: 15px;
+    color: var(--brown);
+}
+
+.logout-link {
+    border: none;
+    padding: 3px 10px;
+
+    background: transparent;
+
+    color: var(--pink);
+
+    font-family: var(--font-garet);
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    border-radius: 999px;
+
+    transition:
+        background 180ms ease,
+        color 180ms ease;
+}
+
+.logout-link:hover {
+    background: var(--pink-pale);
+    color: var(--pink-bright);
+}
+
+.avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #c9e0ea;
+    display: grid;
+    place-items: center;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.page-wrap{width:min(1120px,90vw);margin:0 auto;padding:46px 0 70px}
+.greeting h1{margin:0;font-family:var(--font-display);font-size:clamp(30px,4vw,44px);font-weight:400}
+.greeting p{margin:5px 0 40px;font-family:var(--display);color:var(--gray)}
+
+.category-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:44px;margin:35px 0 70px}
+
+.category-card {
+    min-height: 235px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    padding: 30px;
+
+    text-decoration: none;
+    color: inherit;
+
+    box-shadow: var(--shadow);
+
+    transition: transform var(--transition);
+}
+
+.category-card:hover {
+    transform: translateY(-4px);
+    text-decoration: none;
+}
+
+.pink-card{background:rgba(246,191,210,.84)}.green-card{background:rgba(234,237,220,.9)}
+.category-icon{width:72px;height:72px;margin-bottom:15px}.category-icon svg{width:100%;height:100%}
+.category-card h2{margin:0 0 7px;font-family:var(--font-garet);font-size:20px}
+.category-card p{margin:0;color:var(--gray);font-family:var(--display)}
+.center-action,.load-more{display:flex;justify-content:center}
+
+/* =========================================================
+   PHOTO PAGE
+   ========================================================= */
+
+.listing-toolbar {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 32px;
+}
+
+
+/* ---------- ALL FILTER ---------- */
+
+.filter-pill {
+    min-height: 43px;
+    padding: 0 28px;
+
+    border: none;
+    border-radius: 999px;
+
+    background: var(--pink);
+    color: var(--white);
+
+    font-family: var(--font-garet);
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 180ms ease,
+        background 180ms ease;
+}
+
+.filter-pill:hover {
+    background: var(--pink-bright);
+    transform: translateY(-2px);
+}
+
+
+/* ---------- UPLOAD BUTTON ---------- */
+
+.matcha-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 43px;
+    padding: 0 30px;
+
+    border: 2px solid var(--matcha);
+    border-radius: 999px;
+
+    background: transparent;
+    color: var(--matcha);
+
+    font-family: var(--font-garet);
+    font-size: 14px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background 180ms ease,
+        color 180ms ease,
+        transform 180ms ease;
+}
+
+.matcha-btn:hover {
+    background: var(--matcha);
+    color: var(--white);
+
+    text-decoration: none;
+
+    transform: translateY(-2px);
+}
+
+.matcha-btn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   PHOTO GRID
+   ========================================================= */
+
+.photo-grid {
+    width: 100%;
+
+    display: grid;
+
+    /*
+       Six columns on desktop, matching the original
+       polaroid-style gallery layout.
+    */
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+
+    gap: 30px 22px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   PHOTO CARD
+   ========================================================= */
+
+.photo-card {
+    width: 100%;
+    min-width: 0;
+
+    background: var(--white);
+
+    padding: 6px 6px 16px;
+
+    box-shadow: 0 5px 14px rgba(60, 51, 51, 0.12);
+
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease;
+}
+
+
+/* Give each card a slightly different rotation */
+
+.photo-card:nth-child(3n + 1) {
+    transform: rotate(-1deg);
+}
+
+.photo-card:nth-child(3n + 2) {
+    transform: rotate(1deg);
+}
+
+.photo-card:nth-child(3n) {
+    transform: rotate(-0.4deg);
+}
+
+
+/* Hover */
+
+.photo-card:hover {
+    transform: rotate(0deg) translateY(-5px);
+
+    box-shadow: 0 10px 22px rgba(60, 51, 51, 0.16);
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   PHOTO IMAGE
+   ========================================================= */
+
+.photo-card img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    aspect-ratio: 1 / 1.05;
+
+    object-fit: cover;
+
+    background: #d8eaf1;
+}
+
+
+/* =========================================================
+   PHOTO DATE
+   ========================================================= */
+
+.photo-date {
+    display: block;
+
+    padding: 11px 4px 0;
+
+    text-align: center;
+
+    font-family: var(--font-script);
+    font-size: 18px;
+
+    line-height: 1.05;
+
+    color: var(--gray);
+}
+
+
+.photo-uploader {
+    display: block;
+
+    margin-top: 6px;
+
+    padding: 0 4px;
+
+    text-align: center;
+
+    font-family: var(--font-garet);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+
+    color: var(--matcha);
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   LOAD MORE
+   ========================================================= */
+
+.load-more {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 38px;
+}
+
+
+/* =========================================================
+   EMPTY PHOTO STATE
+   ========================================================= */
+
+.empty-memory {
+    width: 100%;
+
+    text-align: center;
+
+    padding: 90px 20px;
+
+    color: var(--brown);
+}
+
+.empty-memory-icon {
+    margin-bottom: 12px;
+
+    font-size: 52px;
+
+    color: var(--pink);
+}
+
+.empty-memory h2 {
+    margin: 0 0 8px;
+
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.empty-memory p {
+    margin: 0;
+
+    font-family: var(--font-script);
+    font-size: 23px;
+
+    color: var(--gray);
+}
+
+/* =========================================================
+   VIDEO PAGE
+   ========================================================= */
+
+.video-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 36px;
+}
+
+
+/* =========================================================
+   VIDEO CARD
+   ========================================================= */
+
+.video-card {
+    width: 100%;
+    min-width: 0;
+
+    background: var(--white);
+
+    box-shadow:
+        0 5px 14px rgba(60, 51, 51, 0.12);
+
+    display: grid;
+
+    grid-template-columns:
+        110px minmax(0, 1fr);
+
+    min-height: 170px;
+
+    overflow: hidden;
+
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease;
+}
+
+
+.video-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 22px rgba(60, 51, 51, 0.16);
+}
+
+
+/* =========================================================
+   VIDEO THUMBNAIL
+   ========================================================= */
+
+.video-thumb {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    min-height: 170px;
+
+    background: #d8eaf1;
+
+    overflow: hidden;
+}
+
+
+.video-thumb video {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   PLAY BUTTON
+   ========================================================= */
+
+.play {
+    position: absolute;
+
+    inset: 0;
+
+    margin: auto;
+
+    width: 46px;
+    height: 46px;
+
+    border-radius: 50%;
+
+    display: grid;
+    place-items: center;
+
+    background:
+        rgba(255, 255, 255, 0.92);
+
+    color: var(--pink);
+
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 10px rgba(60, 51, 51, 0.12);
+
+    transition:
+        transform 180ms ease,
+        background 180ms ease;
+}
+
+
+.play:hover {
+    transform: scale(1.08);
+
+    background: var(--white);
+}
+
+
+/* =========================================================
+   VIDEO INFORMATION
+   ========================================================= */
+
+.video-info {
+    min-width: 0;
+
+    padding: 25px 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+
+.video-info h3 {
+    margin: 0 0 7px;
+
+    font-family: var(--font-garet);
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    color: var(--dark);
+
+    /*
+       Prevent very long titles from breaking
+       the card layout.
+    */
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+.video-info p {
+    margin: 0;
+
+    font-family: var(--font-display);
+
+    font-size: 13px;
+
+    color: var(--gray);
+}
+
+
+.video-info .video-uploader {
+    margin-top: 5px;
+
+    font-family: var(--font-garet);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+
+    color: var(--matcha);
+}
+
+/* =========================================================
+   JOURNAL PAGE
+   ========================================================= */
+
+.journal-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 34px 54px;
+}
+
+
+/* =========================================================
+   JOURNAL CARD
+   ========================================================= */
+
+.journal-card {
+    width: 100%;
+    min-width: 0;
+
+    background:
+        rgba(255, 255, 255, 0.96);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 5px 14px rgba(60, 51, 51, 0.10);
+
+    padding: 24px 30px;
+
+    display: grid;
+
+    grid-template-columns:
+        68px minmax(0, 1fr);
+
+    gap: 22px;
+
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease;
+}
+
+
+.journal-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 22px rgba(60, 51, 51, 0.14);
+}
+
+
+/* =========================================================
+   JOURNAL DATE
+   ========================================================= */
+
+.journal-date {
+    border-right:
+        1px solid #aaa;
+
+    text-align: left;
+
+    padding-right: 18px;
+}
+
+
+.journal-date .day {
+    display: block;
+
+    font-family:
+        var(--font-display);
+
+    color:
+        var(--pink);
+
+    font-size: 40px;
+
+    line-height: 0.9;
+}
+
+
+.journal-date .month,
+.journal-date .year {
+    display: block;
+
+    margin-top: 8px;
+
+    font-family:
+        var(--font-display);
+
+    font-size: 13px;
+
+    color:
+        var(--gray);
+}
+
+
+/* =========================================================
+   JOURNAL BODY
+   ========================================================= */
+
+.journal-body {
+    min-width: 0;
+}
+
+
+.journal-body h3 {
+    margin:
+        3px 0 9px;
+
+    font-family:
+        var(--font-display);
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    color:
+        var(--dark);
+
+    /*
+       Prevent extremely long titles
+       from breaking the card.
+    */
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+.journal-body p {
+    margin: 0;
+
+    font-family:
+        var(--font-display);
+
+    font-size: 16px;
+
+    color:
+        var(--gray);
+
+    line-height: 1.5;
+
+    /*
+       Keeps very long journal entries
+       from making the cards enormous.
+    */
+    display: -webkit-box;
+
+    -webkit-box-orient: vertical;
+
+    -webkit-line-clamp: 4;
+
+    line-clamp: 4;
+
+    overflow: hidden;
+}
+
+
+.journal-body .journal-uploader {
+    display: block;
+
+    margin-top: 10px;
+
+    font-family: var(--font-garet);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+
+    color: var(--matcha);
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.document-icon{width:48px;height:58px;color:var(--matcha)}.document-icon svg{width:100%;height:100%}
+.document-info h3{margin:0 0 3px;font-family:var(--display);font-size:15px}.document-info p{margin:0;font-size:12px;color:var(--gray)}
+.open-btn{padding:10px 12px;border-radius:8px;background:var(--matcha-light);color:var(--matcha);font-weight:700}
+
+/* =========================================================
+   ADD MEMORY PAGE
+   ========================================================= */
+
+.add-page {
+    width: min(980px, 90vw);
+
+    margin: 0 auto;
+
+    padding: 55px 0 70px;
+}
+
+
+/* =========================================================
+   ADD MEMORY HEADING
+   ========================================================= */
+
+.add-heading {
+    text-align: center;
+}
+
+
+.add-heading h1 {
+    margin: 0;
+
+    font-family: var(--font-display);
+
+    font-size: clamp(32px, 4vw, 45px);
+
+    font-weight: 400;
+
+    color: var(--dark);
+}
+
+
+.add-heading h1 .heart {
+    color: var(--dark);
+
+    font-family: Arial, sans-serif;
+}
+
+
+.add-heading p {
+    width: 260px;
+
+    margin: 5px auto 34px;
+
+    font-family: var(--font-display);
+
+    color: var(--gray);
+
+    line-height: 1.4;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   MEMORY TYPE BUTTONS
+   ========================================================= */
+
+.memory-types {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 26px;
+
+    margin-bottom: 35px;
+}
+
+
+.memory-type {
+    width: 96px;
+
+    min-height: 96px;
+
+    border: 1px solid rgba(60, 51, 51, 0.35);
+
+    border-radius: 14px;
+
+    background: var(--white);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 10px;
+
+    color: var(--brown);
+
+    box-shadow:
+        0 3px 10px rgba(60, 51, 51, 0.08);
+
+    cursor: pointer;
+
+    transition:
+        background 180ms ease,
+        color 180ms ease,
+        transform 180ms ease,
+        box-shadow 180ms ease;
+}
+
+
+.memory-type:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 7px 16px rgba(60, 51, 51, 0.12);
+}
+
+
+.memory-type.active {
+    background: var(--pink-pale);
+
+    border-color: var(--pink-dusty);
+
+    color: var(--brown);
+}
+
+
+.memory-type svg {
+    width: 38px;
+
+    height: 38px;
+
+    flex-shrink: 0;
+}
+
+
+.memory-type span {
+    font-family: var(--font-garet);
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+    letter-spacing: 0.02em;
+}
+
+
+/* =========================================================
+   MAIN FORM LAYOUT
+   ========================================================= */
+
+.add-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1.45fr);
+
+    gap: 42px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   LEFT SIDE
+   TITLE + DATE
+   ========================================================= */
+
+.add-fields {
+    width: 100%;
+}
+
+
+.add-fields .form-group {
+    margin-bottom: 22px;
+}
+
+
+.add-fields label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-family: var(--font-garet);
+
+    font-size: 14px;
+
+    color: var(--brown);
+}
+
+
+.add-fields .form-control {
+    width: 100%;
+
+    min-height: 52px;
+
+    padding: 12px 16px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: var(--white);
+
+    color: var(--brown);
+
+    font-family: var(--font-garet);
+
+    font-size: 14px;
+
+    outline: none;
+
+    box-shadow:
+        0 2px 8px rgba(60, 51, 51, 0.04);
+
+    transition:
+        box-shadow 180ms ease;
+}
+
+
+.add-fields .form-control:focus {
+    box-shadow:
+        0 0 0 3px
+        rgba(228, 122, 159, 0.22);
+}
+
+
+.add-fields .form-control::placeholder {
+    color: #aaa;
+}
+
+
+/* =========================================================
+   RIGHT MEMORY AREA
+   ========================================================= */
+
+.right-memory-area {
+    width: 100%;
+
+    min-width: 0;
+}
+
+
+/* =========================================================
+   UPLOAD BOX
+   ========================================================= */
+
+.upload-box {
+    width: 100%;
+
+    min-height: 320px;
+
+    border:
+        3px dashed
+        var(--pink-dusty);
+
+    border-radius: 20px;
+
+    background:
+        rgba(255, 217, 226, 0.72);
+
+    display: grid;
+
+    place-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    transition:
+        background 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+}
+
+
+.upload-box.drag-over {
+    background:
+        rgba(255, 217, 226, 0.95);
+
+    border-color:
+        var(--pink);
+
+    transform:
+        scale(1.01);
+}
+
+
+.upload-box > div {
+    width: 100%;
+}
+
+
+.upload-box svg {
+    width: 64px;
+
+    height: 64px;
+
+    color: var(--pink-dusty);
+
+    margin-bottom: 12px;
+}
+
+
+.upload-box p {
+    margin: 5px 0;
+
+    color: var(--gray);
+
+    font-family: var(--font-display);
+
+    font-size: 14px;
+}
+
+
+.file-label {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 43px;
+
+    padding: 0 22px;
+
+    border-radius: 999px;
+
+    background: var(--pink);
+
+    color: var(--white);
+
+    cursor: pointer;
+
+    margin-top: 12px;
+
+    font-family: var(--font-display);
+
+    font-size: 15px;
+
+    transition:
+        background 180ms ease,
+        transform 180ms ease;
+}
+
+
+.file-label:hover {
+    background: var(--pink-bright);
+
+    transform:
+        translateY(-2px);
+}
+
+
+.file-input {
+    display: none;
+}
+
+
+.file-names {
+    max-width: 100%;
+
+    margin-top: 15px !important;
+
+    padding: 0 10px;
+
+    color: var(--brown) !important;
+
+    font-family: var(--font-garet) !important;
+
+    font-size: 12px !important;
+
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   JOURNAL WRITING AREA
+   ========================================================= */
+
+.journal-content-group {
+    width: 100%;
+}
+
+
+.journal-content-group > label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-family: var(--font-garet);
+
+    font-size: 14px;
+
+    color: var(--brown);
+}
+
+
+.journal-textarea {
+    display: block;
+
+    width: 100%;
+
+    min-height: 320px;
+
+    padding: 20px;
+
+    border:
+        1px solid
+        rgba(60, 51, 51, 0.08);
+
+    border-radius: 20px;
+
+    background:
+        rgba(255, 255, 255, 0.96);
+
+    color: var(--brown);
+
+    font-family: var(--font-display);
+
+    font-size: 16px;
+
+    line-height: 1.6;
+
+    resize: vertical;
+
+    outline: none;
+
+    box-shadow:
+        0 5px 14px rgba(60, 51, 51, 0.06);
+
+    transition:
+        box-shadow 180ms ease,
+        border-color 180ms ease;
+}
+
+
+.journal-textarea::placeholder {
+    color: #aaa;
+}
+
+
+.journal-textarea:focus {
+    border-color:
+        var(--pink-dusty);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(228, 122, 159, 0.18);
+}
+
+
+/* =========================================================
+   SAVE BUTTON
+   ========================================================= */
+
+.save-row {
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 35px;
+}
+
+
+/* =========================================================
+   HIDDEN ELEMENTS
+   ========================================================= */
+
+[hidden] {
+    display: none !important;
+}
+
+
+/* =========================================================
+   ADD MEMORY - TABLET
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+    .add-page {
+        width: min(92vw, 600px);
+
+        padding:
+            40px 0 55px;
+    }
+
+
+    .memory-types {
+        gap: 10px;
+
+        flex-wrap: wrap;
+
+        margin-bottom: 28px;
+    }
+
+
+    .memory-type {
+        width: 82px;
+
+        min-height: 82px;
+    }
+
+
+    .memory-type svg {
+        width: 32px;
+
+        height: 32px;
+    }
+
+
+    .memory-type span {
+        font-size: 11px;
+    }
+
+
+    .add-layout {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+
+    .right-memory-area {
+        order: 2;
+    }
+
+
+    .upload-box,
+    .journal-textarea {
+        min-height: 300px;
+    }
+
+
+    .save-row {
+        margin-top: 28px;
+    }
+
+}
+
+
+/* =========================================================
+   ADD MEMORY - SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .add-page {
+        width: 92vw;
+
+        padding:
+            32px 0 45px;
+    }
+
+
+    .add-heading h1 {
+        font-size: 34px;
+    }
+
+
+    .add-heading p {
+        width: 220px;
+
+        margin-bottom: 26px;
+
+        font-size: 13px;
+    }
+
+
+    .memory-types {
+        gap: 7px;
+    }
+
+
+    .memory-type {
+        width: 74px;
+
+        min-height: 74px;
+
+        border-radius: 12px;
+
+        gap: 5px;
+    }
+
+
+    .memory-type svg {
+        width: 29px;
+
+        height: 29px;
+    }
+
+
+    .memory-type span {
+        font-size: 10px;
+    }
+
+
+    .add-fields .form-control {
+        min-height: 48px;
+    }
+
+
+    .upload-box {
+        min-height: 280px;
+
+        padding: 20px;
+    }
+
+
+    .upload-box svg {
+        width: 54px;
+
+        height: 54px;
+    }
+
+
+    .journal-textarea {
+        min-height: 280px;
+
+        padding: 16px;
+
+        font-size: 15px;
+    }
+
+
+    .file-label {
+        min-height: 40px;
+
+        padding: 0 18px;
+
+        font-size: 14px;
+    }
+
+}
+
+@media (max-width: 1000px) {
+
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .video-grid {
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 24px;
+    }
+
+    .document-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 760px) {
+
+    .app-header {
+        height: auto;
+        min-height: 78px;
+
+        padding: 10px 18px;
+
+        gap: 12px;
+
+        flex-wrap: wrap;
+    }
+
+    .site-logo {
+        width: 48px;
+        height: 48px;
+    }
+
+    .main-nav {
+        order: 3;
+
+        width: 100%;
+
+        overflow-x: auto;
+
+        padding-bottom: 5px;
+
+        gap: 20px;
+    }
+
+    .nav-link {
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .user-menu {
+        margin-left: auto;
+    }
+
+    .user-profile {
+        gap: 8px;
+    }
+
+    .user-greeting {
+        font-size: 13px;
+    }
+
+    .logout-link {
+        font-size: 10px;
+        padding: 2px 8px;
+    }
+
+    .avatar {
+        width: 40px;
+        height: 40px;
+    }
+
+    .page-wrap {
+        width: min(92vw, 600px);
+
+        padding-top: 30px;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 15px;
+
+        margin-bottom: 35px;
+    }
+
+    .category-card {
+        min-height: 170px;
+
+        padding: 18px 10px;
+    }
+
+    .category-icon {
+        width: 54px;
+        height: 54px;
+    }
+
+    .category-card h2 {
+        font-size: 15px;
+    }
+
+    /* PHOTO MOBILE */
+
+    .photo-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        gap: 22px 16px;
+    }
+
+    .photo-card {
+        padding: 5px 5px 13px;
+    }
+
+    .photo-date {
+        font-size: 17px;
+    }
+
+    .video-card {
+    grid-template-columns: 100px minmax(0, 1fr);
+    }
+
+    .video-thumb {
+        min-height: 150px;
+    }
+
+    .add-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .memory-types {
+        gap: 9px;
+
+        flex-wrap: wrap;
+    }
+
+    .memory-type {
+        width: 76px;
+        min-height: 76px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .home {
+        padding: 20px;
+    }
+
+    .home-title {
+        font-size: 46px;
+    }
+
+    .home-tagline {
+        font-size: 19px;
+    }
+
+    .login-card {
+        padding: 34px 25px 38px;
+    }
+
+    .category-card {
+        min-height: 150px;
+    }
+
+    /* PHOTO SMALL MOBILE */
+
+    .listing-toolbar {
+        margin-bottom: 24px;
+    }
+
+    .filter-pill,
+    .matcha-btn {
+        min-height: 40px;
+
+        padding: 0 20px;
+
+        font-size: 13px;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        gap: 18px 12px;
+    }
+
+    .photo-card {
+        padding: 4px 4px 11px;
+    }
+
+    .photo-date {
+        padding-top: 8px;
+
+        font-size: 15px;
+    }
+
+    .document-card {
+        grid-template-columns: 42px 1fr;
+    }
+
+    .open-btn {
+        grid-column: 2;
+
+        justify-self: start;
+    }
+
+    .journal-card {
+        padding: 18px;
+
+        grid-template-columns: 54px 1fr;
+
+        gap: 13px;
+    }
+
+    .journal-date .day {
+        font-size: 34px;
+    }
+}
+
+
+/* =========================================================
+   JOURNAL CARD - CLICKABLE
+   ========================================================= */
+
+.journal-card {
+    cursor: pointer;
+
+    outline: none;
+}
+
+
+.journal-card:focus-visible {
+    box-shadow:
+        0 0 0 3px var(--pink),
+        0 10px 22px rgba(60, 51, 51, 0.14);
+}
+
+
+/* =========================================================
+   JOURNAL READER MODAL
+   ========================================================= */
+
+.journal-modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 30px;
+}
+
+
+.journal-modal[hidden] {
+    display: none !important;
+}
+
+
+/* =========================================================
+   MODAL BACKDROP
+   ========================================================= */
+
+.journal-modal-backdrop {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        rgba(35, 35, 32, 0.45);
+
+    backdrop-filter:
+        blur(5px);
+
+    -webkit-backdrop-filter:
+        blur(5px);
+}
+
+
+/* =========================================================
+   JOURNAL READING WINDOW
+   ========================================================= */
+
+.journal-reader {
+    position: relative;
+
+    z-index: 2;
+
+    width: min(760px, 92vw);
+
+    max-height: 88vh;
+
+    overflow-y: auto;
+
+    padding:
+        45px
+        55px
+        40px;
+
+    background:
+        rgba(255, 255, 255, 0.98);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 20px 60px
+        rgba(60, 51, 51, 0.25);
+
+    animation:
+        journalReaderIn
+        220ms ease;
+}
+
+
+@keyframes journalReaderIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(15px)
+            scale(0.98);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
+
+.journal-close {
+    position: absolute;
+
+    top: 16px;
+
+    right: 20px;
+
+    width: 40px;
+
+    height: 40px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background:
+        var(--pink-pale);
+
+    color:
+        var(--pink);
+
+    font-family: Arial, sans-serif;
+
+    font-size: 28px;
+
+    line-height: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition:
+        background 180ms ease,
+        color 180ms ease,
+        transform 180ms ease;
+}
+
+
+.journal-close:hover {
+    background:
+        var(--pink);
+
+    color:
+        var(--white);
+
+    transform:
+        rotate(5deg);
+}
+
+
+.journal-close:focus-visible {
+    outline:
+        3px solid
+        rgba(228, 122, 159, 0.35);
+
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   READER DATE
+   ========================================================= */
+
+.reader-date {
+    width: 75px;
+
+    margin-bottom: 25px;
+
+    padding-right: 18px;
+
+    border-right:
+        1px solid
+        #aaa;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+}
+
+
+.reader-day {
+    display: block;
+
+    font-family:
+        var(--font-display);
+
+    font-size: 46px;
+
+    line-height: 0.9;
+
+    color:
+        var(--pink);
+}
+
+
+.reader-month,
+.reader-year {
+    display: block;
+
+    margin-top: 8px;
+
+    font-family:
+        var(--font-display);
+
+    font-size: 13px;
+
+    color:
+        var(--gray);
+}
+
+
+/* =========================================================
+   READER TITLE
+   ========================================================= */
+
+.reader-title {
+    margin:
+        0 0 25px;
+
+    padding-bottom: 18px;
+
+    border-bottom:
+        1px solid
+        rgba(60, 51, 51, 0.12);
+
+    font-family:
+        var(--font-display);
+
+    font-size:
+        clamp(26px, 4vw, 38px);
+
+    font-weight:
+        400;
+
+    line-height:
+        1.2;
+
+    color:
+        var(--dark);
+
+    overflow-wrap:
+        anywhere;
+}
+
+
+/* =========================================================
+   READER CONTENT
+   ========================================================= */
+
+.reader-content {
+    font-family:
+        var(--font-display);
+
+    font-size:
+        17px;
+
+    line-height:
+        1.8;
+
+    color:
+        var(--brown);
+
+    white-space:
+        pre-wrap;
+
+    overflow-wrap:
+        anywhere;
+}
+
+
+/* =========================================================
+   READER FOOTER
+   ========================================================= */
+
+.reader-footer {
+    margin-top: 35px;
+
+    padding-top: 20px;
+
+    border-top:
+        1px solid
+        rgba(60, 51, 51, 0.12);
+
+    text-align: center;
+
+    font-family:
+        var(--font-script);
+
+    font-size: 22px;
+
+    color:
+        var(--gray);
+}
+
+
+.reader-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.reader-uploader {
+    font-family: var(--font-garet);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--matcha);
+}
+
+
+/* =========================================================
+   PREVENT BACKGROUND SCROLLING
+   ========================================================= */
+
+body.journal-modal-open {
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   JOURNAL READER - MOBILE
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+    .journal-modal {
+        padding: 15px;
+    }
+
+
+    .journal-reader {
+        width: 100%;
+
+        max-height: 92vh;
+
+        padding:
+            40px
+            25px
+            30px;
+
+        border-radius: 17px;
+    }
+
+
+    .journal-close {
+        top: 12px;
+
+        right: 12px;
+
+        width: 36px;
+
+        height: 36px;
+
+        font-size: 25px;
+    }
+
+
+    .reader-date {
+        margin-bottom: 20px;
+    }
+
+
+    .reader-day {
+        font-size: 40px;
+    }
+
+
+    .reader-title {
+        font-size: 27px;
+
+        margin-bottom: 20px;
+    }
+
+
+    .reader-content {
+        font-size: 15px;
+
+        line-height: 1.7;
+    }
+
+
+    .reader-footer {
+        font-size: 19px;
+
+        margin-top: 28px;
+    }
+
+}
+
+
+/* =========================================================
+   JOURNAL READER - SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .document-viewer-footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .document-viewer-footer .document-uploader {
+        margin-right: 0;
+    }
+
+    .journal-modal {
+        padding: 8px;
+    }
+
+
+    .journal-reader {
+        max-height: 94vh;
+
+        padding:
+            38px
+            20px
+            25px;
+    }
+
+
+    .reader-title {
+        font-size: 24px;
+    }
+
+
+    .reader-content {
+        font-size: 14px;
+
+        line-height: 1.7;
+    }
+
+
+    .reader-footer {
+        font-size: 17px;
+    }
+
+}
+
+/* =========================================================
+   DOCUMENT PAGE
+   ========================================================= */
+
+.document-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 35px 28px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   DOCUMENT CARD
+   ========================================================= */
+
+.document-card {
+    width: 100%;
+
+    min-width: 0;
+
+    min-height: 175px;
+
+    padding: 25px;
+
+    background:
+        rgba(255, 255, 255, 0.96);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 5px 14px
+        rgba(60, 51, 51, 0.10);
+
+    display: grid;
+
+    grid-template-columns:
+        58px minmax(0, 1fr);
+
+    column-gap: 18px;
+
+    row-gap: 18px;
+
+    align-items: center;
+
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease;
+}
+
+
+.document-card:hover {
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 10px 22px
+        rgba(60, 51, 51, 0.15);
+}
+
+
+/* =========================================================
+   DOCUMENT ICON
+   ========================================================= */
+
+.document-icon {
+    width: 50px;
+
+    height: 58px;
+
+    color:
+        var(--matcha);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.document-icon svg {
+    width: 100%;
+
+    height: 100%;
+}
+
+
+/* =========================================================
+   DOCUMENT INFORMATION
+   ========================================================= */
+
+.document-info {
+    min-width: 0;
+}
+
+
+.document-info h3 {
+    margin:
+        0 0 7px;
+
+    font-family:
+        var(--font-garet);
+
+    font-size:
+        16px;
+
+    font-weight:
+        700;
+
+    color:
+        var(--dark);
+
+    overflow:
+        hidden;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+}
+
+
+.document-info p {
+    margin:
+        3px 0 0;
+
+    font-family:
+        var(--font-display);
+
+    font-size:
+        13px;
+
+    color:
+        var(--gray);
+}
+
+
+.document-info .document-uploader {
+    margin-top: 7px;
+
+    font-family: var(--font-garet);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+
+    color: var(--matcha);
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   OPEN BUTTON
+   ========================================================= */
+
+.open-btn {
+    grid-column:
+        2;
+
+    justify-self:
+        start;
+
+    border:
+        1.5px solid
+        var(--matcha);
+
+    padding:
+        8px 17px;
+
+    border-radius:
+        999px;
+
+    background:
+        transparent;
+
+    color:
+        var(--matcha);
+
+    font-family:
+        var(--font-garet);
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    transition:
+        background 180ms ease,
+        color 180ms ease,
+        transform 180ms ease;
+}
+
+
+.open-btn:hover {
+    background:
+        var(--matcha);
+
+    color:
+        var(--white);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   DOCUMENT MODAL
+   ========================================================= */
+
+.document-modal {
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        1000;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        25px;
+}
+
+
+.document-modal[hidden] {
+    display:
+        none !important;
+}
+
+
+/* =========================================================
+   MODAL BACKDROP
+   ========================================================= */
+
+.document-modal-backdrop {
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+        rgba(35, 35, 32, 0.48);
+
+    backdrop-filter:
+        blur(5px);
+
+    -webkit-backdrop-filter:
+        blur(5px);
+}
+
+
+/* =========================================================
+   DOCUMENT VIEWER
+   ========================================================= */
+
+.document-viewer {
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    width:
+        min(950px, 94vw);
+
+    height:
+        min(88vh, 850px);
+
+    background:
+        var(--white);
+
+    border-radius:
+        20px;
+
+    overflow:
+        hidden;
+
+    box-shadow:
+        0 20px 60px
+        rgba(60, 51, 51, 0.28);
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    animation:
+        documentViewerIn
+        220ms ease;
+}
+
+
+@keyframes documentViewerIn {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(15px)
+            scale(0.98);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
+
+.document-close {
+    position:
+        absolute;
+
+    top:
+        14px;
+
+    right:
+        16px;
+
+    z-index:
+        5;
+
+    width:
+        40px;
+
+    height:
+        40px;
+
+    border:
+        none;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--pink-pale);
+
+    color:
+        var(--pink);
+
+    font-family:
+        Arial, sans-serif;
+
+    font-size:
+        28px;
+
+    line-height:
+        1;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    cursor:
+        pointer;
+
+    transition:
+        background 180ms ease,
+        color 180ms ease,
+        transform 180ms ease;
+}
+
+
+.document-close:hover {
+    background:
+        var(--pink);
+
+    color:
+        var(--white);
+
+    transform:
+        rotate(5deg);
+}
+
+
+/* =========================================================
+   VIEWER HEADER
+   ========================================================= */
+
+.document-viewer-header {
+    min-height:
+        82px;
+
+    padding:
+        16px 70px 16px 25px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        15px;
+
+    border-bottom:
+        1px solid
+        rgba(60, 51, 51, 0.10);
+
+    flex-shrink:
+        0;
+}
+
+
+.document-viewer-icon {
+    width:
+        45px;
+
+    height:
+        50px;
+
+    color:
+        var(--matcha);
+
+    flex-shrink:
+        0;
+}
+
+
+.document-viewer-icon svg {
+    width:
+        100%;
+
+    height:
+        100%;
+}
+
+
+.document-viewer-header h2 {
+    margin:
+        0 0 4px;
+
+    font-family:
+        var(--font-display);
+
+    font-size:
+        22px;
+
+    font-weight:
+        400;
+
+    color:
+        var(--dark);
+
+    overflow:
+        hidden;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+}
+
+
+.document-viewer-header p {
+    margin:
+        0;
+
+    font-family:
+        var(--font-garet);
+
+    font-size:
+        11px;
+
+    color:
+        var(--gray);
+
+    overflow:
+        hidden;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+}
+
+
+/* =========================================================
+   DOCUMENT CONTENT
+   ========================================================= */
+
+.document-viewer-content {
+    flex:
+        1;
+
+    min-height:
+        0;
+
+    background:
+        #f2f2f2;
+
+    overflow:
+        hidden;
+}
+
+
+/* =========================================================
+   PDF VIEWER
+   ========================================================= */
+
+.document-pdf-viewer {
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    border:
+        none;
+
+    background:
+        #fff;
+}
+
+
+/* =========================================================
+   DOC / DOCX MESSAGE
+   ========================================================= */
+
+.document-preview-message {
+    width:
+        min(500px, 85%);
+
+    margin:
+        auto;
+
+    padding:
+        35px;
+
+    text-align:
+        center;
+
+    background:
+        var(--white);
+
+    border-radius:
+        18px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(60, 51, 51, 0.08);
+}
+
+
+.document-preview-icon {
+    width:
+        65px;
+
+    height:
+        75px;
+
+    margin:
+        0 auto 20px;
+
+    color:
+        var(--matcha);
+}
+
+
+.document-preview-icon svg {
+    width:
+        100%;
+
+    height:
+        100%;
+}
+
+
+.document-preview-message h3 {
+    margin:
+        0 0 12px;
+
+    font-family:
+        var(--font-display);
+
+    font-size:
+        21px;
+
+    font-weight:
+        400;
+
+    color:
+        var(--dark);
+
+    overflow-wrap:
+        anywhere;
+}
+
+
+.document-preview-message p {
+    margin:
+        8px 0;
+
+    font-family:
+        var(--font-garet);
+
+    font-size:
+        13px;
+
+    line-height:
+        1.6;
+
+    color:
+        var(--gray);
+}
+
+
+/* =========================================================
+   VIEWER FOOTER
+   ========================================================= */
+
+.document-viewer-footer {
+    min-height:
+        75px;
+
+    padding:
+        15px 25px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-top:
+        1px solid
+        rgba(60, 51, 51, 0.10);
+
+    background:
+        var(--white);
+
+    flex-shrink:
+        0;
+}
+
+
+.document-viewer-footer .matcha-btn {
+    min-height:
+        40px;
+
+    padding:
+        0 22px;
+
+    font-size:
+        12px;
+}
+
+
+.document-viewer-footer .document-uploader {
+    margin-right: 18px;
+
+    font-family: var(--font-garet);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+
+    color: var(--matcha);
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   PREVENT BACKGROUND SCROLLING
+   ========================================================= */
+
+body.document-modal-open {
+    overflow:
+        hidden;
+}
+
+
+/* =========================================================
+   DOCUMENT RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .document-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 760px) {
+
+    .document-grid {
+        grid-template-columns:
+            1fr;
+
+        gap:
+            20px;
+    }
+
+
+    .document-card {
+        min-height:
+            150px;
+    }
+
+
+    .document-modal {
+        padding:
+            10px;
+    }
+
+
+    .document-viewer {
+        width:
+            100%;
+
+        height:
+            94vh;
+
+        border-radius:
+            15px;
+    }
+
+
+    .document-viewer-header {
+        padding:
+            15px 60px 15px 18px;
+    }
+
+
+    .document-viewer-header h2 {
+        font-size:
+            19px;
+    }
+
+
+    .document-viewer-header p {
+        font-size:
+            10px;
+    }
+
+
+    .document-viewer-footer {
+        min-height:
+            68px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .document-card {
+        padding:
+            20px;
+
+        grid-template-columns:
+            50px minmax(0, 1fr);
+    }
+
+
+    .document-icon {
+        width:
+            44px;
+
+        height:
+            52px;
+    }
+
+
+    .document-info h3 {
+        font-size:
+            14px;
+    }
+
+
+    .document-info p {
+        font-size:
+            12px;
+    }
+
+
+    .open-btn {
+        padding:
+            7px 14px;
+
+        font-size:
+            11px;
+    }
+
+
+    .document-viewer-header {
+        min-height:
+            72px;
+    }
+
+
+    .document-viewer-icon {
+        width:
+            38px;
+
+        height:
+            43px;
+    }
+
+
+    .document-preview-message {
+        padding:
+            25px 18px;
+    }
+
+}
+/* =========================================================
+   PHOTO CARD - CLICKABLE
+   ========================================================= */
+
+.photo-card {
+    cursor: pointer;
+}
+
+.photo-card:focus-visible {
+    outline: 3px solid var(--pink);
+    outline-offset: 4px;
+}
+
+/* =========================================================
+   PHOTO VIEWER MODAL
+   ========================================================= */
+
+.photo-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+}
+
+.photo-modal[hidden] {
+    display: none !important;
+}
+
+.photo-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(35, 35, 32, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.photo-viewer {
+    position: relative;
+    z-index: 2;
+    width: min(920px, 94vw);
+    max-height: 92vh;
+    overflow-y: auto;
+    padding: 18px 18px 28px;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(60, 51, 51, 0.28);
+    animation: photoViewerIn 220ms ease;
+}
+
+@keyframes photoViewerIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.photo-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    z-index: 3;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--pink-pale);
+    color: var(--pink);
+    font-family: Arial, sans-serif;
+    font-size: 28px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.photo-close:hover {
+    background: var(--pink);
+    color: var(--white);
+    transform: rotate(5deg);
+}
+
+.photo-close:focus-visible {
+    outline: 3px solid rgba(228, 122, 159, 0.35);
+    outline-offset: 2px;
+}
+
+.photo-viewer-image-wrap {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+    background: #f7f1f3;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.photo-viewer-image {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: 68vh;
+    object-fit: contain;
+}
+
+.photo-viewer-info {
+    text-align: center;
+    padding: 24px 15px 0;
+}
+
+.photo-viewer-title {
+    margin: 0 0 7px;
+    font-family: var(--font-display);
+    font-size: clamp(24px, 4vw, 34px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--dark);
+    overflow-wrap: anywhere;
+}
+
+.photo-viewer-date {
+    margin: 0;
+    font-family: var(--font-script);
+    font-size: 20px;
+    color: var(--gray);
+}
+
+.photo-viewer-uploader {
+    margin: 5px 0 20px;
+    font-family: var(--font-garet);
+    font-size: 12px;
+    color: var(--gray);
+}
+
+.photo-download-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    text-decoration: none;
+}
+
+body.photo-modal-open {
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   PHOTO VIEWER - MOBILE
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+    .photo-modal {
+        padding: 12px;
+    }
+
+    .photo-viewer {
+        width: 100%;
+        max-height: 94vh;
+        padding: 12px 12px 22px;
+        border-radius: 17px;
+    }
+
+    .photo-viewer-image-wrap {
+        min-height: 180px;
+    }
+
+    .photo-viewer-image {
+        max-height: 62vh;
+    }
+
+    .photo-viewer-info {
+        padding-top: 20px;
+    }
+
+    .photo-download-btn {
+        width: min(260px, 100%);
+    }
+}

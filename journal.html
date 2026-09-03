@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Journal | Our Little Archive</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body
+    class="page-journal"
+    style="--journal-background: url('assets/backgrounds/journal-bg.jpg');"
+>
+
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
+<header class="app-header">
+
+    <nav class="main-nav">
+
+        <a
+            class="nav-link"
+            href="dashboard.html"
+        >
+            DASHBOARD
+        </a>
+
+        <a
+            class="nav-link"
+            href="photos.html"
+        >
+            PHOTOS
+        </a>
+
+        <a
+            class="nav-link"
+            href="videos.html"
+        >
+            VIDEOS
+        </a>
+
+        <a
+            class="nav-link active"
+            href="journal.html"
+        >
+            JOURNAL
+        </a>
+
+        <a
+            class="nav-link"
+            href="documents.html"
+        >
+            DOCUMENTS
+        </a>
+
+    </nav>
+
+
+    <div class="user-menu">
+
+        <div class="user-profile">
+
+            <div class="avatar">
+
+                <img
+                    src="assets/avatar-placeholder.svg"
+                    alt="Profile"
+                >
+
+            </div>
+
+
+            <div class="user-info">
+
+                <span class="user-greeting">
+
+                    Hi,
+                    <span data-user-name>
+                        Name
+                    </span>
+
+                </span>
+
+
+                <button
+                    class="logout-link"
+                    type="button"
+                    onclick="signOut()"
+                >
+                    LOG OUT
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN
+     ========================================================= -->
+
+<main class="page-wrap">
+
+
+    <!-- =====================================================
+         TOOLBAR
+         ===================================================== -->
+
+    <div class="listing-toolbar">
+
+        <button
+            class="filter-pill"
+            type="button"
+        >
+            ALL
+        </button>
+
+
+        <a
+            class="matcha-btn"
+            href="add-memory.html?type=journal"
+        >
+            New Entry
+        </a>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         JOURNAL GRID
+         ===================================================== -->
+
+    <section
+        class="journal-grid"
+        id="journalGrid"
+    >
+    </section>
+
+
+
+    <!-- =====================================================
+         EMPTY STATE
+         ===================================================== -->
+
+    <div
+        id="emptyJournal"
+        class="empty-memory"
+        hidden
+    >
+
+        <div class="empty-memory-icon">
+            ♡
+        </div>
+
+        <h2>
+            No journal entries yet
+        </h2>
+
+        <p>
+            Write down a memory worth keeping.
+        </p>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         LOAD MORE
+         ===================================================== -->
+
+    <div
+        class="load-more"
+        id="loadMoreContainer"
+        hidden
+    >
+
+        <button
+            class="primary-btn"
+            id="loadMoreButton"
+            type="button"
+        >
+            LOAD MORE
+        </button>
+
+    </div>
+
+</main>
+
+
+
+<!-- =========================================================
+     JOURNAL READING MODAL
+     ========================================================= -->
+
+<div
+    class="journal-modal"
+    id="journalModal"
+    hidden
+>
+
+
+    <!-- DARK BACKDROP -->
+
+    <div
+        class="journal-modal-backdrop"
+        id="journalModalBackdrop"
+    ></div>
+
+
+
+    <!-- READING WINDOW -->
+
+    <article
+        class="journal-reader"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="readerTitle"
+    >
+
+
+        <!-- CLOSE BUTTON -->
+
+        <button
+            class="journal-close"
+            id="journalClose"
+            type="button"
+            aria-label="Close journal"
+        >
+            ×
+        </button>
+
+
+
+        <!-- DATE -->
+
+        <div class="reader-date">
+
+            <span
+                class="reader-day"
+                id="readerDay"
+            >
+                1
+            </span>
+
+            <span
+                class="reader-month"
+                id="readerMonth"
+            >
+                SEP
+            </span>
+
+            <span
+                class="reader-year"
+                id="readerYear"
+            >
+                2026
+            </span>
+
+        </div>
+
+
+
+        <!-- TITLE -->
+
+        <h2
+            class="reader-title"
+            id="readerTitle"
+        >
+            Journal Title
+        </h2>
+
+
+
+        <!-- JOURNAL CONTENT -->
+
+        <div
+            class="reader-content"
+            id="readerContent"
+        >
+        </div>
+
+
+
+        <!-- FOOTER -->
+
+        <div class="reader-footer">
+
+            <span>
+                A memory from Our Little Archive ♡
+            </span>
+
+            <span
+                class="reader-uploader"
+                id="readerUploader"
+            >
+            </span>
+
+        </div>
+
+    </article>
+
+</div>
+
+
+
+<!-- =========================================================
+     TOAST
+     ========================================================= -->
+
+<div
+    id="toast"
+    class="toast"
+    role="status"
+></div>
+
+
+
+<!-- =========================================================
+     SCRIPTS
+     ========================================================= -->
+
+<script src="js/app.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase-config.js"></script>
+
+<script src="js/auth.js"></script>
+
+
+
+<script>
+
+/* =========================================================
+   INITIALIZE
+   ========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
+
+        await protectPage();
+
+        loadJournalEntries();
+
+    }
+);
+
+
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+let currentJournalPage = 0;
+
+const JOURNALS_PER_PAGE = 4;
+
+
+
+/* =========================================================
+   LOAD JOURNAL ENTRIES
+   ========================================================= */
+
+async function loadJournalEntries() {
+
+    const journalGrid =
+        document.getElementById(
+            "journalGrid"
+        );
+
+
+    const emptyJournal =
+        document.getElementById(
+            "emptyJournal"
+        );
+
+
+    const loadMoreContainer =
+        document.getElementById(
+            "loadMoreContainer"
+        );
+
+
+    try {
+
+        const from =
+            currentJournalPage *
+            JOURNALS_PER_PAGE;
+
+
+        const to =
+            from +
+            JOURNALS_PER_PAGE -
+            1;
+
+
+
+        /* =========================================
+           GET JOURNALS FROM SUPABASE
+           ========================================= */
+
+        const {
+            data: memories,
+            error
+        } =
+            await supabaseClient
+                .from("memories")
+                .select("*")
+                .eq("type", "journal")
+                .order(
+                    "memory_date",
+                    {
+                        ascending: false
+                    }
+                )
+                .order(
+                    "created_at",
+                    {
+                        ascending: false
+                    }
+                )
+                .range(
+                    from,
+                    to
+                );
+
+
+
+        /* =========================================
+           ERROR
+           ========================================= */
+
+        if (error) {
+
+            console.error(
+                "Could not load journal entries:",
+                error
+            );
+
+
+            showToast(
+                `Could not load journal entries: ${error.message}`
+            );
+
+
+            return;
+
+        }
+
+
+
+        /* =========================================
+           EMPTY STATE
+           ========================================= */
+
+        if (
+            currentJournalPage === 0 &&
+            (
+                !memories ||
+                memories.length === 0
+            )
+        ) {
+
+            emptyJournal.hidden =
+                false;
+
+
+            loadMoreContainer.hidden =
+                true;
+
+
+            return;
+
+        }
+
+
+
+        emptyJournal.hidden =
+            true;
+
+
+
+        /* =========================================
+           CREATE CARDS
+           ========================================= */
+
+        for (
+            const memory of memories
+        ) {
+
+            createJournalCard(
+                memory,
+                journalGrid
+            );
+
+        }
+
+
+
+        /* =========================================
+           LOAD MORE
+           ========================================= */
+
+        if (
+            memories.length <
+            JOURNALS_PER_PAGE
+        ) {
+
+            loadMoreContainer.hidden =
+                true;
+
+        }
+
+        else {
+
+            loadMoreContainer.hidden =
+                false;
+
+        }
+
+
+        currentJournalPage++;
+
+    }
+
+
+    catch (error) {
+
+        console.error(
+            "Unexpected journal loading error:",
+            error
+        );
+
+
+        showToast(
+            "Something went wrong while loading your journal."
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   CREATE JOURNAL CARD
+   ========================================================= */
+
+function createJournalCard(
+    memory,
+    journalGrid
+) {
+
+
+    /* =========================================
+       DATE
+       ========================================= */
+
+    const date =
+        new Date(
+            `${memory.memory_date}T00:00:00`
+        );
+
+
+    const day =
+        date.toLocaleDateString(
+            "en-US",
+            {
+                day: "numeric"
+            }
+        );
+
+
+    const month =
+        date.toLocaleDateString(
+            "en-US",
+            {
+                month: "short"
+            }
+        ).toUpperCase();
+
+
+    const year =
+        date.toLocaleDateString(
+            "en-US",
+            {
+                year: "numeric"
+            }
+        );
+
+
+
+    /* =========================================
+       CARD
+       ========================================= */
+
+    const article =
+        document.createElement(
+            "article"
+        );
+
+
+    article.className =
+        "journal-card";
+
+
+    /*
+     * Make the whole card clickable.
+     */
+
+    article.tabIndex = 0;
+
+    article.setAttribute(
+        "role",
+        "button"
+    );
+
+    article.setAttribute(
+        "aria-label",
+        `Read journal: ${memory.title}`
+    );
+
+
+
+    /* =========================================
+       DATE AREA
+       ========================================= */
+
+    const dateBox =
+        document.createElement(
+            "div"
+        );
+
+
+    dateBox.className =
+        "journal-date";
+
+
+    const dayElement =
+        document.createElement(
+            "span"
+        );
+
+
+    dayElement.className =
+        "day";
+
+
+    dayElement.textContent =
+        day;
+
+
+
+    const monthElement =
+        document.createElement(
+            "span"
+        );
+
+
+    monthElement.className =
+        "month";
+
+
+    monthElement.textContent =
+        month;
+
+
+
+    const yearElement =
+        document.createElement(
+            "span"
+        );
+
+
+    yearElement.className =
+        "year";
+
+
+    yearElement.textContent =
+        year;
+
+
+
+    dateBox.appendChild(
+        dayElement
+    );
+
+    dateBox.appendChild(
+        monthElement
+    );
+
+    dateBox.appendChild(
+        yearElement
+    );
+
+
+
+    /* =========================================
+       JOURNAL BODY
+       ========================================= */
+
+    const body =
+        document.createElement(
+            "div"
+        );
+
+
+    body.className =
+        "journal-body";
+
+
+
+    const title =
+        document.createElement(
+            "h3"
+        );
+
+
+    title.textContent =
+        memory.title;
+
+
+
+    const content =
+        document.createElement(
+            "p"
+        );
+
+
+    content.textContent =
+        memory.content || "";
+
+
+
+    body.appendChild(
+        title
+    );
+
+
+    body.appendChild(
+        content
+    );
+
+
+    const uploader =
+        document.createElement("p");
+
+    uploader.className =
+        "journal-uploader";
+
+    uploader.textContent =
+        `Uploaded by ${memory.uploaded_by || "Unknown"}`;
+
+    body.appendChild(
+        uploader
+    );
+
+
+
+    /* =========================================
+       PUT CARD TOGETHER
+       ========================================= */
+
+    article.appendChild(
+        dateBox
+    );
+
+
+    article.appendChild(
+        body
+    );
+
+
+    journalGrid.appendChild(
+        article
+    );
+
+
+
+    /* =========================================
+       OPEN JOURNAL
+       ========================================= */
+
+    article.addEventListener(
+        "click",
+        () => {
+
+            openJournal(
+                memory
+            );
+
+        }
+    );
+
+
+
+    /* =========================================
+       KEYBOARD SUPPORT
+       ========================================= */
+
+    article.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key === "Enter" ||
+                event.key === " "
+            ) {
+
+                event.preventDefault();
+
+                openJournal(
+                    memory
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   OPEN JOURNAL READER
+   ========================================================= */
+
+function openJournal(
+    memory
+) {
+
+    const modal =
+        document.getElementById(
+            "journalModal"
+        );
+
+
+    const readerDay =
+        document.getElementById(
+            "readerDay"
+        );
+
+
+    const readerMonth =
+        document.getElementById(
+            "readerMonth"
+        );
+
+
+    const readerYear =
+        document.getElementById(
+            "readerYear"
+        );
+
+
+    const readerTitle =
+        document.getElementById(
+            "readerTitle"
+        );
+
+
+    const readerContent =
+        document.getElementById(
+            "readerContent"
+        );
+
+
+    const readerUploader =
+        document.getElementById(
+            "readerUploader"
+        );
+
+
+
+    /* =========================================
+       DATE
+       ========================================= */
+
+    const date =
+        new Date(
+            `${memory.memory_date}T00:00:00`
+        );
+
+
+    readerDay.textContent =
+        date.toLocaleDateString(
+            "en-US",
+            {
+                day: "numeric"
+            }
+        );
+
+
+    readerMonth.textContent =
+        date.toLocaleDateString(
+            "en-US",
+            {
+                month: "short"
+            }
+        ).toUpperCase();
+
+
+    readerYear.textContent =
+        date.toLocaleDateString(
+            "en-US",
+            {
+                year: "numeric"
+            }
+        );
+
+
+
+    /* =========================================
+       TITLE
+       ========================================= */
+
+    readerTitle.textContent =
+        memory.title;
+
+
+
+    /* =========================================
+       CONTENT
+       
+       textContent is intentionally used
+       instead of innerHTML so journal text
+       cannot inject HTML into the page.
+       ========================================= */
+
+    readerContent.textContent =
+        memory.content || "No journal text was saved.";
+
+
+    readerUploader.textContent =
+        `Written by ${memory.uploaded_by || "Unknown"}`;
+
+
+
+    /* =========================================
+       SHOW MODAL
+       ========================================= */
+
+    modal.hidden =
+        false;
+
+
+    document.body.classList.add(
+        "journal-modal-open"
+    );
+
+
+    /*
+     * Put keyboard focus on close button.
+     */
+
+    document
+        .getElementById(
+            "journalClose"
+        )
+        .focus();
+
+}
+
+
+
+/* =========================================================
+   CLOSE JOURNAL READER
+   ========================================================= */
+
+function closeJournal() {
+
+    const modal =
+        document.getElementById(
+            "journalModal"
+        );
+
+
+    modal.hidden =
+        true;
+
+
+    document.body.classList.remove(
+        "journal-modal-open"
+    );
+
+}
+
+
+
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
+
+document
+    .getElementById(
+        "journalClose"
+    )
+    .addEventListener(
+        "click",
+        closeJournal
+    );
+
+
+
+/* =========================================================
+   CLICK BACKDROP TO CLOSE
+   ========================================================= */
+
+document
+    .getElementById(
+        "journalModalBackdrop"
+    )
+    .addEventListener(
+        "click",
+        closeJournal
+    );
+
+
+
+/* =========================================================
+   ESCAPE KEY TO CLOSE
+   ========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            const modal =
+                document.getElementById(
+                    "journalModal"
+                );
+
+
+            if (
+                !modal.hidden
+            ) {
+
+                closeJournal();
+
+            }
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   LOAD MORE
+   ========================================================= */
+
+document
+    .getElementById(
+        "loadMoreButton"
+    )
+    ?.addEventListener(
+        "click",
+        loadJournalEntries
+    );
+
+</script>
+
+
+</body>
+
+</html>

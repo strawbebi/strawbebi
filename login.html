@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Our Little Archive</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body 
+  class="page-login"
+  style="--login-background: url('assets/backgrounds/login-bg.jpg');"
+>
+    <main class="center-page">
+
+        <form class="login-card" id="loginForm">
+
+            <h1 class="login-title">WELCOME BACK</h1>
+            <p class="login-subtitle">just for us</p>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                    class="form-control"
+                    id="email"
+                    type="email"
+                    autocomplete="email"
+                    placeholder="youremail@gmail.com"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                    class="form-control"
+                    id="password"
+                    type="password"
+                    autocomplete="current-password"
+                    placeholder="••••••••"
+                    required
+                >
+            </div>
+
+            <div id="loginMessage" class="login-message" hidden></div>
+
+            <button class="primary-btn" id="loginButton" type="submit">
+                SIGN IN
+            </button>
+
+        </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+
+    <script>
+        redirectIfAlreadySignedIn();
+
+        document
+            .getElementById("loginForm")
+            .addEventListener("submit", signIn);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Add a Memory | Our Little Archive</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body
+    class="page-add"
+    style="--add-background: url('assets/backgrounds/add-bg.jpg');"
+>
+
+
+<main class="add-page">
+
+
+    <!-- =========================================
+         HEADING
+         ========================================= -->
+
+    <section class="add-heading">
+
+        <h1>
+            Add a Memory
+            <span class="heart">♡</span>
+        </h1>
+
+        <p>
+            Save the memory so we can cherish it forever.
+        </p>
+
+    </section>
+
+
+
+    <!-- =========================================
+         MEMORY TYPE BUTTONS
+         ========================================= -->
+
+    <div class="memory-types">
+
+
+        <!-- =====================================
+             PHOTO
+             ===================================== -->
+
+        <button
+            class="memory-type"
+            type="button"
+            data-type="photo"
+        >
+
+            <svg
+                viewBox="0 0 64 64"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+            >
+
+                <rect
+                    x="8"
+                    y="18"
+                    width="48"
+                    height="36"
+                    rx="5"
+                />
+
+                <path d="M20 18l5-8h14l5 8"/>
+
+                <circle
+                    cx="32"
+                    cy="36"
+                    r="10"
+                />
+
+                <circle
+                    cx="49"
+                    cy="25"
+                    r="2"
+                />
+
+            </svg>
+
+            <span>PHOTOS</span>
+
+        </button>
+
+
+
+        <!-- =====================================
+             VIDEO
+             ===================================== -->
+
+        <button
+            class="memory-type"
+            type="button"
+            data-type="video"
+        >
+
+            <svg
+                viewBox="0 0 64 64"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+            >
+
+                <rect
+                    x="8"
+                    y="17"
+                    width="34"
+                    height="30"
+                    rx="4"
+                />
+
+                <path
+                    d="M42 27l14-8v26l-14-8"
+                />
+
+                <path
+                    d="M24 26l10 6-10 6z"
+                />
+
+            </svg>
+
+            <span>VIDEOS</span>
+
+        </button>
+
+
+
+        <!-- =====================================
+             JOURNAL
+             ===================================== -->
+
+        <button
+            class="memory-type"
+            type="button"
+            data-type="journal"
+        >
+
+            <svg
+                viewBox="0 0 64 64"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+            >
+
+                <path
+                    d="M10 12c9-3 17 0 22 5v36c-5-5-13-8-22-5z"
+                />
+
+                <path
+                    d="M54 12c-9-3-17 0-22 5v36c5-5 13-8 22-5z"
+                />
+
+                <path d="M32 17v36"/>
+
+            </svg>
+
+            <span>JOURNAL</span>
+
+        </button>
+
+
+
+        <!-- =====================================
+             DOCUMENT
+             ===================================== -->
+
+        <button
+            class="memory-type"
+            type="button"
+            data-type="document"
+        >
+
+            <svg
+                viewBox="0 0 64 64"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+            >
+
+                <path
+                    d="M17 6h23l10 10v42H17z"
+                />
+
+                <path
+                    d="M40 6v12h10"
+                />
+
+                <path
+                    d="M25 30h17M25 38h17M25 46h12"
+                />
+
+            </svg>
+
+            <span>DOCUMENT</span>
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =========================================
+         MEMORY FORM
+         ========================================= -->
+
+    <form id="memoryForm">
+
+        <div class="add-layout">
+
+
+            <!-- =====================================
+                 LEFT SIDE
+                 TITLE + DATE
+                 ===================================== -->
+
+            <div class="add-fields">
+
+
+                <!-- TITLE -->
+
+                <div class="form-group">
+
+                    <label for="title">
+                        Title
+                    </label>
+
+                    <input
+                        class="form-control"
+                        id="title"
+                        type="text"
+                        placeholder="Type here..."
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- DATE -->
+
+                <div class="form-group">
+
+                    <label for="date">
+                        Date
+                    </label>
+
+                    <input
+                        class="form-control"
+                        id="date"
+                        type="date"
+                        required
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =====================================
+                 RIGHT SIDE
+                 UPLOAD OR JOURNAL
+                 ===================================== -->
+
+            <div class="right-memory-area">
+
+
+                <!-- =================================
+                     UPLOAD BOX
+                     Used for:
+                     PHOTO
+                     VIDEO
+                     DOCUMENT
+                     ================================= -->
+
+                <div
+                    class="upload-box"
+                    id="uploadBox"
+                >
+
+                    <div>
+
+                        <svg
+                            viewBox="0 0 64 64"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+
+                            <path
+                                d="M20 48h25a10 10 0 0 0 1-20 16 16 0 0 0-31 4 9 9 0 0 0 5 16z"
+                            />
+
+                            <path
+                                d="M32 39V22M25 29l7-7 7 7"
+                            />
+
+                        </svg>
+
+
+                        <p id="uploadMessage">
+                            Drag &amp; drop your files here
+                        </p>
+
+                        <p>
+                            or
+                        </p>
+
+
+                        <label
+                            class="file-label"
+                            for="files"
+                        >
+                            Choose Files
+                        </label>
+
+
+                        <input
+                            class="file-input"
+                            id="files"
+                            type="file"
+                            multiple
+                        >
+
+
+                        <p
+                            id="fileNames"
+                            class="file-names"
+                        ></p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     JOURNAL WRITING BOX
+                     ================================= -->
+
+                <div
+                    class="journal-content-group"
+                    id="journalContentGroup"
+                    hidden
+                >
+
+                    <label for="content">
+                        Your Memory
+                    </label>
+
+
+                    <textarea
+                        class="form-control journal-textarea"
+                        id="content"
+                        placeholder="Write about this memory..."
+                    ></textarea>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================================
+             SAVE BUTTON
+             ========================================= -->
+
+        <div class="save-row">
+
+            <button
+                class="matcha-btn"
+                id="saveMemoryButton"
+                type="submit"
+            >
+                SAVE MEMORY
+            </button>
+
+        </div>
+
+    </form>
+
+</main>
+
+
+
+<!-- =========================================
+     TOAST
+     ========================================= -->
+
+<div
+    id="toast"
+    class="toast"
+    role="status"
+></div>
+
+
+
+<!-- =========================================
+     JAVASCRIPT
+     ========================================= -->
+
+<script src="js/app.js"></script>
+
+
+<!-- =========================================
+     SUPABASE
+     ========================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase-config.js"></script>
+
+<script src="js/auth.js"></script>
+
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
+
+
+        /* =========================================
+           PROTECT PAGE
+           ========================================= */
+
+        await protectPage();
+
+
+
+        /* =========================================
+           ELEMENTS
+           ========================================= */
+
+        const dateInput =
+            document.getElementById("date");
+
+        const fileInput =
+            document.getElementById("files");
+
+        const fileNames =
+            document.getElementById("fileNames");
+
+        const saveButton =
+            document.getElementById(
+                "saveMemoryButton"
+            );
+
+        const uploadBox =
+            document.getElementById(
+                "uploadBox"
+            );
+
+        const uploadMessage =
+            document.getElementById(
+                "uploadMessage"
+            );
+
+        const journalContentGroup =
+            document.getElementById(
+                "journalContentGroup"
+            );
+
+        const contentInput =
+            document.getElementById(
+                "content"
+            );
+
+        const memoryForm =
+            document.getElementById(
+                "memoryForm"
+            );
+
+
+
+        /* =========================================
+           DEFAULT DATE
+           ========================================= */
+
+        dateInput.value =
+            new Date()
+                .toISOString()
+                .slice(0, 10);
+
+
+
+        /* =========================================
+           GET TYPE FROM URL
+           
+           Examples:
+           add-memory.html?type=photo
+           add-memory.html?type=video
+           add-memory.html?type=journal
+           add-memory.html?type=document
+           ========================================= */
+
+        const urlParams =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        let selectedType =
+            urlParams.get("type") || "photo";
+
+
+        /* Only allow valid memory types */
+
+        const validTypes = [
+            "photo",
+            "video",
+            "journal",
+            "document"
+        ];
+
+
+        if (
+            !validTypes.includes(
+                selectedType
+            )
+        ) {
+
+            selectedType = "photo";
+
+        }
+
+
+
+        /* =========================================
+           MEMORY TYPE BUTTONS
+           ========================================= */
+
+        const memoryTypeButtons =
+            document.querySelectorAll(
+                ".memory-type"
+            );
+
+
+        function updateActiveButton() {
+
+            memoryTypeButtons.forEach(
+                button => {
+
+                    button.classList.toggle(
+                        "active",
+                        button.dataset.type ===
+                        selectedType
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================================
+           UPDATE PAGE BASED ON TYPE
+           ========================================= */
+
+        function updateMemoryType() {
+
+
+            /* =====================================
+               PHOTO
+               ===================================== */
+
+            if (
+                selectedType === "photo"
+            ) {
+
+                uploadBox.hidden =
+                    false;
+
+                journalContentGroup.hidden =
+                    true;
+
+                contentInput.required =
+                    false;
+
+                fileInput.accept =
+                    "image/*";
+
+                uploadMessage.textContent =
+                    "Drag & drop your photos here";
+
+            }
+
+
+
+            /* =====================================
+               VIDEO
+               ===================================== */
+
+            else if (
+                selectedType === "video"
+            ) {
+
+                uploadBox.hidden =
+                    false;
+
+                journalContentGroup.hidden =
+                    true;
+
+                contentInput.required =
+                    false;
+
+                fileInput.accept =
+                    "video/*";
+
+                uploadMessage.textContent =
+                    "Drag & drop your videos here";
+
+            }
+
+
+
+            /* =====================================
+               JOURNAL
+               ===================================== */
+
+            else if (
+                selectedType === "journal"
+            ) {
+
+                /* Clear file selection */
+
+                fileInput.value =
+                    "";
+
+                fileNames.textContent =
+                    "";
+
+
+                /* Hide upload box */
+
+                uploadBox.hidden =
+                    true;
+
+
+                /* Show journal box */
+
+                journalContentGroup.hidden =
+                    false;
+
+
+                /* Make journal content required */
+
+                contentInput.required =
+                    true;
+
+
+                fileInput.accept =
+                    "";
+
+            }
+
+
+
+            /* =====================================
+               DOCUMENT
+               ===================================== */
+
+            else if (
+                selectedType === "document"
+            ) {
+
+                uploadBox.hidden =
+                    false;
+
+                journalContentGroup.hidden =
+                    true;
+
+                contentInput.required =
+                    false;
+
+                fileInput.accept =
+                    ".pdf,.doc,.docx";
+
+                uploadMessage.textContent =
+                    "Drag & drop your documents here";
+
+            }
+
+
+            /* Update button */
+
+            updateActiveButton();
+
+        }
+
+
+
+        /* =========================================
+           BUTTON CLICK
+           ========================================= */
+
+        memoryTypeButtons.forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        selectedType =
+                            button.dataset.type;
+
+
+                        /*
+                         * Update URL without
+                         * refreshing the page.
+                         */
+
+                        const newUrl =
+                            `${window.location.pathname}?type=${selectedType}`;
+
+
+                        window.history.replaceState(
+                            {},
+                            "",
+                            newUrl
+                        );
+
+
+                        updateMemoryType();
+
+                    }
+                );
+
+            }
+        );
+
+
+
+        /* =========================================
+           FILE SELECTION
+           ========================================= */
+
+        fileInput.addEventListener(
+            "change",
+            () => {
+
+                const files =
+                    [
+                        ...fileInput.files
+                    ];
+
+
+                fileNames.textContent =
+                    files
+                        .map(
+                            file => file.name
+                        )
+                        .join(", ");
+
+            }
+        );
+
+
+
+        /* =========================================
+           DRAG & DROP
+           ========================================= */
+
+        uploadBox.addEventListener(
+            "dragover",
+            event => {
+
+                event.preventDefault();
+
+                uploadBox.classList.add(
+                    "drag-over"
+                );
+
+            }
+        );
+
+
+        uploadBox.addEventListener(
+            "dragleave",
+            () => {
+
+                uploadBox.classList.remove(
+                    "drag-over"
+                );
+
+            }
+        );
+
+
+        uploadBox.addEventListener(
+            "drop",
+            event => {
+
+                event.preventDefault();
+
+                uploadBox.classList.remove(
+                    "drag-over"
+                );
+
+
+                const droppedFiles =
+                    event.dataTransfer.files;
+
+
+                if (
+                    droppedFiles.length > 0
+                ) {
+
+                    fileInput.files =
+                        droppedFiles;
+
+
+                    fileNames.textContent =
+                        [
+                            ...droppedFiles
+                        ]
+                            .map(
+                                file =>
+                                    file.name
+                            )
+                            .join(", ");
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================================
+           FORM SUBMIT
+           ========================================= */
+
+        memoryForm.addEventListener(
+            "submit",
+            async event => {
+
+                event.preventDefault();
+
+
+
+                /* =====================================
+                   GET TITLE + DATE + CONTENT
+                   ===================================== */
+
+                const title =
+                    document
+                        .getElementById("title")
+                        .value
+                        .trim();
+
+
+                const memoryDate =
+                    dateInput.value;
+
+
+                const content =
+                    contentInput.value
+                        .trim();
+
+
+
+                /* =====================================
+                   BASIC VALIDATION
+                   ===================================== */
+
+                if (
+                    !title ||
+                    !memoryDate
+                ) {
+
+                    showToast(
+                        "Please enter a title and date."
+                    );
+
+                    return;
+
+                }
+
+
+
+                /* =====================================
+                   JOURNAL VALIDATION
+                   ===================================== */
+
+                if (
+                    selectedType === "journal" &&
+                    !content
+                ) {
+
+                    showToast(
+                        "Please write something in your journal."
+                    );
+
+                    return;
+
+                }
+
+
+
+                /* =====================================
+                   FILE VALIDATION
+                   ===================================== */
+
+                const files =
+                    [
+                        ...fileInput.files
+                    ];
+
+
+                if (
+                    selectedType !== "journal" &&
+                    files.length === 0
+                ) {
+
+                    let message =
+                        "Please choose at least one file.";
+
+
+                    if (
+                        selectedType === "photo"
+                    ) {
+
+                        message =
+                            "Please choose at least one photo.";
+
+                    }
+
+                    else if (
+                        selectedType === "video"
+                    ) {
+
+                        message =
+                            "Please choose at least one video.";
+
+                    }
+
+                    else if (
+                        selectedType === "document"
+                    ) {
+
+                        message =
+                            "Please choose at least one document.";
+
+                    }
+
+
+                    showToast(message);
+
+                    return;
+
+                }
+
+
+
+                /* =====================================
+                   GET CURRENT USER
+                   ===================================== */
+
+                const {
+                    data: {
+                        user
+                    },
+                    error: userError
+                } =
+                    await supabaseClient
+                        .auth
+                        .getUser();
+
+
+
+                if (
+                    userError ||
+                    !user
+                ) {
+
+                    showToast(
+                        "Your session expired. Please sign in again."
+                    );
+
+
+                    setTimeout(
+                        () => {
+
+                            window.location.href =
+                                "login.html";
+
+                        },
+                        1200
+                    );
+
+
+                    return;
+
+                }
+
+
+
+                /* =====================================
+                   UPLOADER NAME
+                   ===================================== */
+
+                const uploaderName =
+                    getArchiveUserName(user);
+
+
+
+                /* =====================================
+                   BUTTON LOADING
+                   ===================================== */
+
+                saveButton.disabled =
+                    true;
+
+                saveButton.textContent =
+                    "SAVING...";
+
+
+
+                try {
+
+
+                    /* =================================
+                       JOURNAL
+                       ================================= */
+
+                    if (
+                        selectedType ===
+                        "journal"
+                    ) {
+
+
+                        const {
+                            data,
+                            error
+                        } =
+                            await supabaseClient
+                                .from("memories")
+                                .insert({
+
+                                    user_id:
+                                        user.id,
+
+                                    uploaded_by:
+                                        uploaderName,
+
+                                    type:
+                                        "journal",
+
+                                    title:
+                                        title,
+
+                                    memory_date:
+                                        memoryDate,
+
+                                    content:
+                                        content,
+
+                                    file_name:
+                                        null,
+
+                                    file_path:
+                                        null
+
+                                })
+                                .select();
+
+
+                        if (error) {
+
+                            console.error(
+                                "Journal database error:",
+                                error
+                            );
+
+                            throw error;
+
+                        }
+
+
+                        console.log(
+                            "Journal saved:",
+                            data
+                        );
+
+
+                        showToast(
+                            "Journal entry saved successfully! ♡"
+                        );
+
+
+                        setTimeout(
+                            () => {
+
+                                window.location.href =
+                                    "journal.html";
+
+                            },
+                            1200
+                        );
+
+
+                        return;
+
+                    }
+
+
+
+                    /* =================================
+                       PHOTO / VIDEO / DOCUMENT
+                       ================================= */
+
+                    for (
+                        const file of files
+                    ) {
+
+
+                        /* ==============================
+                           SAFE FILE NAME
+                           ============================== */
+
+                        const safeName =
+                            file.name
+                                .replace(
+                                    /[^a-zA-Z0-9._-]/g,
+                                    "_"
+                                );
+
+
+
+                        /* ==============================
+                           UNIQUE FILE PATH
+                           ============================== */
+
+                        const filePath =
+                            `${user.id}/${Date.now()}-${safeName}`;
+
+
+                        console.log(
+                            "Uploading:",
+                            filePath
+                        );
+
+
+
+                        /* ==============================
+                           SUPABASE STORAGE
+                           ============================== */
+
+                        const {
+                            data: uploadData,
+                            error: uploadError
+                        } =
+                            await supabaseClient
+                                .storage
+                                .from("memories")
+                                .upload(
+                                    filePath,
+                                    file,
+                                    {
+
+                                        cacheControl:
+                                            "3600",
+
+                                        upsert:
+                                            false,
+
+                                        contentType:
+                                            file.type
+
+                                    }
+                                );
+
+
+
+                        if (
+                            uploadError
+                        ) {
+
+                            console.error(
+                                "Storage upload error:",
+                                uploadError
+                            );
+
+                            throw uploadError;
+
+                        }
+
+
+                        console.log(
+                            "Uploaded successfully:",
+                            uploadData
+                        );
+
+
+
+                        /* ==============================
+                           DATABASE RECORD
+                           ============================== */
+
+                        const {
+                            data: memoryData,
+                            error: memoryError
+                        } =
+                            await supabaseClient
+                                .from("memories")
+                                .insert({
+
+                                    user_id:
+                                        user.id,
+
+                                    uploaded_by:
+                                        uploaderName,
+
+                                    type:
+                                        selectedType,
+
+                                    title:
+                                        title,
+
+                                    memory_date:
+                                        memoryDate,
+
+                                    file_name:
+                                        file.name,
+
+                                    file_path:
+                                        filePath,
+
+                                    file_size:
+                                        file.size,
+
+                                    mime_type:
+                                        file.type
+
+                                })
+                                .select();
+
+
+
+                        if (
+                            memoryError
+                        ) {
+
+                            console.error(
+                                "Database error:",
+                                memoryError
+                            );
+
+
+                            /* Delete uploaded file
+                               if database fails */
+
+                            await supabaseClient
+                                .storage
+                                .from("memories")
+                                .remove([
+                                    filePath
+                                ]);
+
+
+                            throw memoryError;
+
+                        }
+
+
+                        console.log(
+                            "Memory saved:",
+                            memoryData
+                        );
+
+                    }
+
+
+
+                    /* =================================
+                       SUCCESS
+                       ================================= */
+
+                    showToast(
+
+                        files.length === 1
+
+                            ? "Memory saved successfully! ♡"
+
+                            : `${files.length} memories saved successfully! ♡`
+
+                    );
+
+
+
+                    /* =================================
+                       REDIRECT
+                       ================================= */
+
+                    setTimeout(
+                        () => {
+
+                            if (
+                                selectedType ===
+                                "video"
+                            ) {
+
+                                window.location.href =
+                                    "videos.html";
+
+                            }
+
+                            else if (
+                                selectedType ===
+                                "document"
+                            ) {
+
+                                window.location.href =
+                                    "documents.html";
+
+                            }
+
+                            else {
+
+                                window.location.href =
+                                    "photos.html";
+
+                            }
+
+                        },
+                        1200
+                    );
+
+                }
+
+
+
+                /* =====================================
+                   ERROR
+                   ===================================== */
+
+                catch (error) {
+
+                    console.error(
+                        "MEMORY SAVE FAILED:",
+                        error
+                    );
+
+
+                    showToast(
+                        `Upload failed: ${
+                            error.message ||
+                            "Unknown error"
+                        }`
+                    );
+
+                }
+
+
+
+                /* =====================================
+                   FINISH LOADING
+                   ===================================== */
+
+                finally {
+
+                    saveButton.disabled =
+                        false;
+
+                    saveButton.textContent =
+                        "SAVE MEMORY";
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================================
+           INITIALIZE PAGE
+           ========================================= */
+
+        updateMemoryType();
+
+    }
+
+);
+
+</script>
+
+
+</body>
+
+</html>

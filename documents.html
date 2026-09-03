@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Documents | Our Little Archive</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body
+    class="page-documents"
+    style="--documents-background: url('assets/backgrounds/documents-bg.jpg');"
+>
+
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
+<header class="app-header">
+
+    <nav class="main-nav">
+
+        <a
+            class="nav-link"
+            href="dashboard.html"
+        >
+            DASHBOARD
+        </a>
+
+        <a
+            class="nav-link"
+            href="photos.html"
+        >
+            PHOTOS
+        </a>
+
+        <a
+            class="nav-link"
+            href="videos.html"
+        >
+            VIDEOS
+        </a>
+
+        <a
+            class="nav-link"
+            href="journal.html"
+        >
+            JOURNAL
+        </a>
+
+        <a
+            class="nav-link active"
+            href="documents.html"
+        >
+            DOCUMENTS
+        </a>
+
+    </nav>
+
+
+    <div class="user-menu">
+
+        <div class="user-profile">
+
+            <div class="avatar">
+
+                <img
+                    src="assets/avatar-placeholder.svg"
+                    alt="Profile"
+                >
+
+            </div>
+
+
+            <div class="user-info">
+
+                <span class="user-greeting">
+
+                    Hi,
+                    <span data-user-name>
+                        Name
+                    </span>
+
+                </span>
+
+
+                <button
+                    class="logout-link"
+                    type="button"
+                    onclick="signOut()"
+                >
+                    LOG OUT
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN
+     ========================================================= -->
+
+<main class="page-wrap">
+
+
+    <!-- =====================================================
+         TOOLBAR
+         ===================================================== -->
+
+    <div class="listing-toolbar">
+
+        <button
+            class="filter-pill"
+            type="button"
+        >
+            ALL
+        </button>
+
+
+        <a
+            class="matcha-btn"
+            href="add-memory.html?type=document"
+        >
+            Upload
+        </a>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         DOCUMENT GRID
+         ===================================================== -->
+
+    <section
+        class="document-grid"
+        id="documentGrid"
+    >
+    </section>
+
+
+
+    <!-- =====================================================
+         EMPTY STATE
+         ===================================================== -->
+
+    <div
+        id="emptyDocuments"
+        class="empty-memory"
+        hidden
+    >
+
+        <div class="empty-memory-icon">
+            ♡
+        </div>
+
+        <h2>
+            No documents yet
+        </h2>
+
+        <p>
+            Save something important to our little archive.
+        </p>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         LOAD MORE
+         ===================================================== -->
+
+    <div
+        class="load-more"
+        id="loadMoreContainer"
+        hidden
+    >
+
+        <button
+            class="primary-btn"
+            id="loadMoreButton"
+            type="button"
+        >
+            LOAD MORE
+        </button>
+
+    </div>
+
+</main>
+
+
+
+<!-- =========================================================
+     DOCUMENT VIEWER
+     ========================================================= -->
+
+<div
+    class="document-modal"
+    id="documentModal"
+    hidden
+>
+
+
+    <!-- BACKDROP -->
+
+    <div
+        class="document-modal-backdrop"
+        id="documentModalBackdrop"
+    ></div>
+
+
+
+    <!-- VIEWER -->
+
+    <article
+        class="document-viewer"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="documentViewerTitle"
+    >
+
+
+        <!-- CLOSE -->
+
+        <button
+            class="document-close"
+            id="documentClose"
+            type="button"
+            aria-label="Close document"
+        >
+            ×
+        </button>
+
+
+
+        <!-- HEADER -->
+
+        <div class="document-viewer-header">
+
+            <div class="document-viewer-icon">
+
+                <svg
+                    viewBox="0 0 64 64"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+
+                    <path
+                        d="M17 6h23l10 10v42H17z"
+                    />
+
+                    <path
+                        d="M40 6v12h10"
+                    />
+
+                    <path
+                        d="M25 30h17M25 38h17M25 46h12"
+                    />
+
+                </svg>
+
+            </div>
+
+
+            <div>
+
+                <h2
+                    id="documentViewerTitle"
+                >
+                    Document
+                </h2>
+
+                <p
+                    id="documentViewerInfo"
+                >
+                    PDF
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DOCUMENT CONTENT -->
+
+        <div
+            class="document-viewer-content"
+            id="documentViewerContent"
+        >
+        </div>
+
+
+
+        <!-- FOOTER -->
+
+        <div class="document-viewer-footer">
+
+            <span
+                class="document-uploader"
+                id="documentUploader"
+            >
+            </span>
+
+            <a
+                class="matcha-btn"
+                id="documentOpenButton"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                OPEN IN NEW TAB
+            </a>
+
+        </div>
+
+    </article>
+
+</div>
+
+
+
+<!-- =========================================================
+     TOAST
+     ========================================================= -->
+
+<div
+    id="toast"
+    class="toast"
+    role="status"
+></div>
+
+
+
+<!-- =========================================================
+     SCRIPTS
+     ========================================================= -->
+
+<script src="js/app.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase-config.js"></script>
+
+<script src="js/auth.js"></script>
+
+
+
+<script>
+
+/* =========================================================
+   INITIALIZE
+   ========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
+
+        await protectPage();
+
+        loadDocuments();
+
+    }
+);
+
+
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+let currentDocumentPage = 0;
+
+const DOCUMENTS_PER_PAGE = 9;
+
+
+
+/* =========================================================
+   LOAD DOCUMENTS
+   ========================================================= */
+
+async function loadDocuments() {
+
+    const documentGrid =
+        document.getElementById(
+            "documentGrid"
+        );
+
+
+    const emptyDocuments =
+        document.getElementById(
+            "emptyDocuments"
+        );
+
+
+    const loadMoreContainer =
+        document.getElementById(
+            "loadMoreContainer"
+        );
+
+
+    try {
+
+        const from =
+            currentDocumentPage *
+            DOCUMENTS_PER_PAGE;
+
+
+        const to =
+            from +
+            DOCUMENTS_PER_PAGE -
+            1;
+
+
+
+        /* =========================================
+           GET DOCUMENTS
+           ========================================= */
+
+        const {
+            data: memories,
+            error
+        } =
+            await supabaseClient
+                .from("memories")
+                .select("*")
+                .eq("type", "document")
+                .order(
+                    "memory_date",
+                    {
+                        ascending: false
+                    }
+                )
+                .order(
+                    "created_at",
+                    {
+                        ascending: false
+                    }
+                )
+                .range(
+                    from,
+                    to
+                );
+
+
+
+        /* =========================================
+           DATABASE ERROR
+           ========================================= */
+
+        if (error) {
+
+            console.error(
+                "Could not load documents:",
+                error
+            );
+
+
+            showToast(
+                `Could not load documents: ${error.message}`
+            );
+
+
+            return;
+
+        }
+
+
+
+        /* =========================================
+           EMPTY STATE
+           ========================================= */
+
+        if (
+            currentDocumentPage === 0 &&
+            (
+                !memories ||
+                memories.length === 0
+            )
+        ) {
+
+            emptyDocuments.hidden =
+                false;
+
+
+            loadMoreContainer.hidden =
+                true;
+
+
+            return;
+
+        }
+
+
+
+        emptyDocuments.hidden =
+            true;
+
+
+
+        /* =========================================
+           CREATE DOCUMENT CARDS
+           ========================================= */
+
+        for (
+            const memory of memories
+        ) {
+
+            await createDocumentCard(
+                memory,
+                documentGrid
+            );
+
+        }
+
+
+
+        /* =========================================
+           LOAD MORE
+           ========================================= */
+
+        if (
+            memories.length <
+            DOCUMENTS_PER_PAGE
+        ) {
+
+            loadMoreContainer.hidden =
+                true;
+
+        }
+
+        else {
+
+            loadMoreContainer.hidden =
+                false;
+
+        }
+
+
+        currentDocumentPage++;
+
+    }
+
+
+    catch (error) {
+
+        console.error(
+            "Unexpected document loading error:",
+            error
+        );
+
+
+        showToast(
+            "Something went wrong while loading your documents."
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   CREATE DOCUMENT CARD
+   ========================================================= */
+
+async function createDocumentCard(
+    memory,
+    documentGrid
+) {
+
+
+    /* =========================================
+       GET FILE SIZE
+       ========================================= */
+
+    const fileSize =
+        formatFileSize(
+            memory.file_size
+        );
+
+
+    /* =========================================
+       GET DATE
+       ========================================= */
+
+    const date =
+        new Date(
+            `${memory.memory_date}T00:00:00`
+        );
+
+
+    const formattedDate =
+        date.toLocaleDateString(
+            "en-US",
+            {
+                month: "long",
+                day: "numeric",
+                year: "numeric"
+            }
+        );
+
+
+
+    /* =========================================
+       CREATE CARD
+       ========================================= */
+
+    const article =
+        document.createElement(
+            "article"
+        );
+
+
+    article.className =
+        "document-card";
+
+
+
+    /* =========================================
+       DOCUMENT ICON
+       ========================================= */
+
+    const icon =
+        document.createElement(
+            "div"
+        );
+
+
+    icon.className =
+        "document-icon";
+
+
+    icon.innerHTML = `
+
+        <svg
+            viewBox="0 0 64 64"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+        >
+
+            <path
+                d="M17 6h23l10 10v42H17z"
+            />
+
+            <path
+                d="M40 6v12h10"
+            />
+
+            <path
+                d="M25 30h17M25 38h17M25 46h12"
+            />
+
+        </svg>
+
+    `;
+
+
+
+    /* =========================================
+       DOCUMENT INFO
+       ========================================= */
+
+    const info =
+        document.createElement(
+            "div"
+        );
+
+
+    info.className =
+        "document-info";
+
+
+
+    const title =
+        document.createElement(
+            "h3"
+        );
+
+
+    title.textContent =
+        memory.title;
+
+
+
+    const dateElement =
+        document.createElement(
+            "p"
+        );
+
+
+    dateElement.textContent =
+        formattedDate;
+
+
+
+    const sizeElement =
+        document.createElement(
+            "p"
+        );
+
+
+    sizeElement.textContent =
+        fileSize;
+
+
+
+    info.appendChild(
+        title
+    );
+
+    info.appendChild(
+        dateElement
+    );
+
+    info.appendChild(
+        sizeElement
+    );
+
+
+    const uploader =
+        document.createElement("p");
+
+    uploader.className =
+        "document-uploader";
+
+    uploader.textContent =
+        `Uploaded by ${memory.uploaded_by || "Unknown"}`;
+
+    info.appendChild(
+        uploader
+    );
+
+
+
+    /* =========================================
+       OPEN BUTTON
+       ========================================= */
+
+    const openButton =
+        document.createElement(
+            "button"
+        );
+
+
+    openButton.className =
+        "open-btn";
+
+
+    openButton.type =
+        "button";
+
+
+    openButton.textContent =
+        "OPEN";
+
+
+
+    openButton.addEventListener(
+        "click",
+        event => {
+
+            event.stopPropagation();
+
+            openDocument(
+                memory
+            );
+
+        }
+    );
+
+
+
+    /* =========================================
+       PUT CARD TOGETHER
+       ========================================= */
+
+    article.appendChild(
+        icon
+    );
+
+
+    article.appendChild(
+        info
+    );
+
+
+    article.appendChild(
+        openButton
+    );
+
+
+    documentGrid.appendChild(
+        article
+    );
+
+}
+
+
+
+/* =========================================================
+   FORMAT FILE SIZE
+   ========================================================= */
+
+function formatFileSize(
+    bytes
+) {
+
+    if (
+        !bytes ||
+        bytes <= 0
+    ) {
+
+        return "Unknown size";
+
+    }
+
+
+    const units = [
+        "B",
+        "KB",
+        "MB",
+        "GB"
+    ];
+
+
+    const index =
+        Math.floor(
+            Math.log(bytes) /
+            Math.log(1024)
+        );
+
+
+    const size =
+        bytes /
+        Math.pow(
+            1024,
+            index
+        );
+
+
+    return `${size.toFixed(
+        index === 0 ? 0 : 1
+    )} ${units[index] || "GB"}`;
+
+}
+
+
+
+/* =========================================================
+   OPEN DOCUMENT
+   ========================================================= */
+
+async function openDocument(
+    memory
+) {
+
+    try {
+
+        /* =========================================
+           CREATE SIGNED URL
+           ========================================= */
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .storage
+                .from("memories")
+                .createSignedUrl(
+                    memory.file_path,
+                    3600
+                );
+
+
+        if (error) {
+
+            console.error(
+                "Could not create document URL:",
+                error
+            );
+
+
+            showToast(
+                `Could not open document: ${error.message}`
+            );
+
+
+            return;
+
+        }
+
+
+        const signedUrl =
+            data.signedUrl;
+
+
+
+        /* =========================================
+           GET ELEMENTS
+           ========================================= */
+
+        const modal =
+            document.getElementById(
+                "documentModal"
+            );
+
+
+        const viewerTitle =
+            document.getElementById(
+                "documentViewerTitle"
+            );
+
+
+        const viewerInfo =
+            document.getElementById(
+                "documentViewerInfo"
+            );
+
+
+        const viewerContent =
+            document.getElementById(
+                "documentViewerContent"
+            );
+
+
+        const documentUploader =
+            document.getElementById(
+                "documentUploader"
+            );
+
+
+        const openButton =
+            document.getElementById(
+                "documentOpenButton"
+            );
+
+
+
+        /* =========================================
+           FILE TYPE
+           ========================================= */
+
+        const mimeType =
+            (
+                memory.mime_type ||
+                ""
+            ).toLowerCase();
+
+
+        const fileName =
+            (
+                memory.file_name ||
+                ""
+            ).toLowerCase();
+
+
+
+        /* =========================================
+           TITLE
+           ========================================= */
+
+        viewerTitle.textContent =
+            memory.title;
+
+
+
+        viewerInfo.textContent =
+            `${memory.file_name} • ${formatFileSize(memory.file_size)}`;
+
+
+        documentUploader.textContent =
+            `Uploaded by ${memory.uploaded_by || "Unknown"}`;
+
+
+
+        /* =========================================
+           OPEN BUTTON
+           ========================================= */
+
+        openButton.href =
+            signedUrl;
+
+
+
+        /* =========================================
+           CLEAR VIEWER
+           ========================================= */
+
+        viewerContent.innerHTML =
+            "";
+
+
+
+        /* =========================================
+           PDF
+           ========================================= */
+
+        if (
+            mimeType === "application/pdf" ||
+            fileName.endsWith(".pdf")
+        ) {
+
+            const iframe =
+                document.createElement(
+                    "iframe"
+                );
+
+
+            iframe.className =
+                "document-pdf-viewer";
+
+
+            iframe.src =
+                signedUrl;
+
+
+            iframe.title =
+                memory.title;
+
+
+            viewerContent.appendChild(
+                iframe
+            );
+
+        }
+
+
+
+        /* =========================================
+           DOC / DOCX
+           ========================================= */
+
+        else {
+
+            const message =
+                document.createElement(
+                    "div"
+                );
+
+
+            message.className =
+                "document-preview-message";
+
+
+            message.innerHTML = `
+
+                <div class="document-preview-icon">
+
+                    <svg
+                        viewBox="0 0 64 64"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+
+                        <path
+                            d="M17 6h23l10 10v42H17z"
+                        />
+
+                        <path
+                            d="M40 6v12h10"
+                        />
+
+                        <path
+                            d="M25 30h17M25 38h17M25 46h12"
+                        />
+
+                    </svg>
+
+                </div>
+
+
+                <h3>
+                    ${escapeHtml(memory.file_name)}
+                </h3>
+
+
+                <p>
+                    This document type cannot be previewed
+                    directly in the browser.
+                </p>
+
+
+                <p>
+                    Click <strong>OPEN IN NEW TAB</strong>
+                    below to open the file.
+                </p>
+
+            `;
+
+
+            viewerContent.appendChild(
+                message
+            );
+
+        }
+
+
+
+        /* =========================================
+           SHOW MODAL
+           ========================================= */
+
+        modal.hidden =
+            false;
+
+
+        document.body.classList.add(
+            "document-modal-open"
+        );
+
+
+        document
+            .getElementById(
+                "documentClose"
+            )
+            .focus();
+
+    }
+
+
+    catch (error) {
+
+        console.error(
+            "Document viewer error:",
+            error
+        );
+
+
+        showToast(
+            "Something went wrong while opening the document."
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   ESCAPE HTML
+   ========================================================= */
+
+function escapeHtml(
+    text
+) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        text || "";
+
+
+    return div.innerHTML;
+
+}
+
+
+
+/* =========================================================
+   CLOSE DOCUMENT
+   ========================================================= */
+
+function closeDocument() {
+
+    const modal =
+        document.getElementById(
+            "documentModal"
+        );
+
+
+    modal.hidden =
+        true;
+
+
+    document.body.classList.remove(
+        "document-modal-open"
+    );
+
+
+    document
+        .getElementById(
+            "documentViewerContent"
+        )
+        .innerHTML =
+        "";
+
+}
+
+
+
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
+
+document
+    .getElementById(
+        "documentClose"
+    )
+    .addEventListener(
+        "click",
+        closeDocument
+    );
+
+
+
+/* =========================================================
+   CLICK BACKDROP
+   ========================================================= */
+
+document
+    .getElementById(
+        "documentModalBackdrop"
+    )
+    .addEventListener(
+        "click",
+        closeDocument
+    );
+
+
+
+/* =========================================================
+   ESCAPE KEY
+   ========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            const modal =
+                document.getElementById(
+                    "documentModal"
+                );
+
+
+            if (
+                !modal.hidden
+            ) {
+
+                closeDocument();
+
+            }
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   LOAD MORE
+   ========================================================= */
+
+document
+    .getElementById(
+        "loadMoreButton"
+    )
+    ?.addEventListener(
+        "click",
+        loadDocuments
+    );
+
+</script>
+
+
+</body>
+
+</html>
